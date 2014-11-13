@@ -10,6 +10,8 @@
 		235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EC8351A12FBC100BB50DD /* ChatViewController.m */; };
 		235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235EC8361A12FBC100BB50DD /* ChatViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
+		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
+		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
 		C6BC662D1A11B03500484AE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662C1A11B03500484AE4 /* main.m */; };
 		C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662F1A11B03500484AE4 /* AppDelegate.m */; };
 		C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6BC66371A11B03500484AE4 /* Images.xcassets */; };
@@ -41,6 +43,9 @@
 		235EC8361A12FBC100BB50DD /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		82FF3710C0EC2B4E1B168D21 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C60006EA1A14976B00420B63 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C60006EB1A14976B00420B63 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		C6BC66271A11B03500484AE4 /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6BC662B1A11B03500484AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6BC662C1A11B03500484AE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,6 +139,9 @@
 				C6BC66371A11B03500484AE4 /* Images.xcassets */,
 				C6BC66391A11B03500484AE4 /* LaunchScreen.xib */,
 				C6BC662A1A11B03500484AE4 /* Supporting Files */,
+				C60006E91A14976B00420B63 /* MainViewController.h */,
+				C60006EA1A14976B00420B63 /* MainViewController.m */,
+				C60006EB1A14976B00420B63 /* MainViewController.xib */,
 			);
 			path = tinder;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
+				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
 				C6BC66701A11B4F400484AE4 /* MatchScreenViewController.xib in Resources */,
 				235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */,
@@ -355,6 +364,7 @@
 				C6BC66561A11B0AC00484AE4 /* Message.m in Sources */,
 				C6BC66671A11B45100484AE4 /* LoginViewController.m in Sources */,
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
+				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,
 				235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */,
