@@ -15,6 +15,8 @@
 		23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A851A16C978001AD2F7 /* ChatTableViewCell.m */; };
 		23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */; };
 		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
+		6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */; };
+		6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
 		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
@@ -59,6 +61,9 @@
 		23997A891A16CF4C001AD2F7 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		23997A8A1A16CF4C001AD2F7 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		82FF3710C0EC2B4E1B168D21 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C60006EA1A14976B00420B63 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -240,6 +245,9 @@
 		C6BC666A1A11B48A00484AE4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */,
+				6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */,
+				6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -339,6 +347,7 @@
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
 				C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */,
 				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
+				6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
 				235EC8451A15CBFE00BB50DD /* ChatIndexViewController.xib in Resources */,
 				235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */,
@@ -401,6 +410,7 @@
 				235EC8441A15CBFE00BB50DD /* ChatIndexViewController.m in Sources */,
 				C6BC66561A11B0AC00484AE4 /* Message.m in Sources */,
 				C6BC66671A11B45100484AE4 /* LoginViewController.m in Sources */,
+				6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */,
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
 				23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */,
 				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,

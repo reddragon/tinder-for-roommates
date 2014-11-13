@@ -39,6 +39,10 @@ static User* _currentUser;
     } else {
         _currentUser.preferences_set = NO;
     }
+    _currentUser.image = [UIImage imageWithData:[user[@"image"] getData]];
+    _currentUser.age = [(NSNumber *)user[@"age"] integerValue];
+    _currentUser.budget = [(NSNumber *)user[@"budget"] integerValue];
+    _currentUser.desc = user[@"desc"];
 }
 
 // Populate User from PFUser object

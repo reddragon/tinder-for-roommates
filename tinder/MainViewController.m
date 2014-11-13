@@ -9,8 +9,8 @@
 #import "MainViewController.h"
 #import "User.h"
 #import "MatchScreenViewController.h"
-#import "PreferencesViewController.h"
 #import "ChatIndexViewController.h"
+#import "SettingsViewController.h"
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
@@ -102,7 +102,7 @@ typedef NS_ENUM(NSInteger, AppView) {
     [super viewDidLoad];
 
     _matchViewController = [[MatchScreenViewController alloc] init];
-    _settingsViewController = [[PreferencesViewController alloc] init];
+    _settingsViewController = [[SettingsViewController alloc] init];
     _chatViewController = [[ChatIndexViewController alloc] init];
 
     
