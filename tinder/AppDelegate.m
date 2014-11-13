@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "ChatViewController.h"
+
+#import "LoginViewController.h"
+#import "MainViewController.h"
+#import <Parse/Parse.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface AppDelegate ()
 
@@ -17,11 +21,39 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Parse setApplicationId:@"U7mZG2sJaK4OBFiKPPGLgzIPAFE1NMc2yAI4shkj" clientKey: @"D6qSsbM4dDYstQLrMdoI5NHatWTXP6ZlBj4jAJjB"];
+    [PFFacebookUtils initializeFacebook];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[ChatViewController alloc] init];
     [self.window makeKeyAndVisible];
+    
+    if ([PFUser currentUser] && // Check if user is cached
+            [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        MainViewController* mvc = [[MainViewController alloc] init];
+        self.window.rootViewController = mvc;
+    } else {
+        LoginViewController* lvc = [[LoginViewController alloc] init];
+        self.window.rootViewController = lvc;
+    }
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [[PFFacebookUtils session] close];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -35,14 +67,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end
