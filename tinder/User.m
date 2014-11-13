@@ -22,4 +22,8 @@
     }
 }
 
+- (NSArray *)messagesFromUser:(NSUInteger)fromUser {
+    return @[];
+}
+
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EC8351A12FBC100BB50DD /* ChatViewController.m */; };
 		235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235EC8361A12FBC100BB50DD /* ChatViewController.xib */; };
+		235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235EC83F1A13FB5B00BB50DD /* avatar.jpg */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C6BC662D1A11B03500484AE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662C1A11B03500484AE4 /* main.m */; };
 		C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662F1A11B03500484AE4 /* AppDelegate.m */; };
@@ -39,6 +40,7 @@
 		235EC8341A12FBC100BB50DD /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		235EC8351A12FBC100BB50DD /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		235EC8361A12FBC100BB50DD /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		235EC83F1A13FB5B00BB50DD /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		82FF3710C0EC2B4E1B168D21 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C6BC66271A11B03500484AE4 /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +143,7 @@
 		C6BC662A1A11B03500484AE4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				235EC83F1A13FB5B00BB50DD /* avatar.jpg */,
 				C6BC662B1A11B03500484AE4 /* Info.plist */,
 				C6BC662C1A11B03500484AE4 /* main.m */,
 			);
@@ -298,6 +301,7 @@
 			files = (
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
+				235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */,
 				C6BC66701A11B4F400484AE4 /* MatchScreenViewController.xib in Resources */,
 				235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */,
 				C6BC66681A11B45100484AE4 /* LoginViewController.xib in Resources */,

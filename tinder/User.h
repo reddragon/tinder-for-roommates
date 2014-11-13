@@ -12,13 +12,18 @@
 @class User;
 
 @interface User : NSObject
+
 @property (strong, nonatomic) NSString* name;
 @property NSUInteger age;
 @property (strong, nonatomic) UIImage* image;
 @property (strong, nonatomic) NSString* desc;
+
 // Keeping the budge simple by taking an upper limit (non-float)
 @property NSUInteger budget;
 @property NSUInteger fbid;
+
+
+- (NSArray *)messagesFromUser:(NSUInteger)fromUser;
 
 // Currently logged in user
 + (User*)user;

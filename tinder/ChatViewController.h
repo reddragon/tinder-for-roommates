@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSQMessages.h"
+#import "User.h"
 
-@interface ChatViewController : UIViewController
+@class JSQMessagesViewController;
+
+@interface ChatViewController : JSQMessagesViewController
+
+@property (weak, nonatomic) User* match;
 
 @end

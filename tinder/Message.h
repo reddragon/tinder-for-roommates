@@ -7,11 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSQMessages.h"
+#import "User.h"
 
-@interface Message : NSObject
-// Both 'from' and 'to' are unique id. Possibly we can reuse fb ids.
-@property NSUInteger from;
+@interface Message : NSObject <JSQMessageData>
+
+@property NSUInteger sendId;
 @property NSUInteger to;
 @property NSString* text;
 @property (strong, nonatomic) NSDate* date;
+
+@property User *sender;
+
+
 @end
