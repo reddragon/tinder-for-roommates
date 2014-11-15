@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
-@interface ChatIndexViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ChatIndexViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MainViewControllerDelegate>
+
+- (ViewType)viewType;
 
 @end

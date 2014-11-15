@@ -10,7 +10,6 @@
 
 #import "LoginViewController.h"
 #import "MainViewController.h"
-#import "MainNavigationViewController.h"
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
@@ -22,6 +21,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+
     [Parse setApplicationId:@"U7mZG2sJaK4OBFiKPPGLgzIPAFE1NMc2yAI4shkj" clientKey: @"D6qSsbM4dDYstQLrMdoI5NHatWTXP6ZlBj4jAJjB"];
     [PFFacebookUtils initializeFacebook];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -29,7 +30,7 @@
     
     if ([PFUser currentUser] && // Check if user is cached
             [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        MainNavigationViewController* mvc = [[MainNavigationViewController alloc] init];
+        MainViewController* mvc = [[MainViewController alloc] init];
         self.window.rootViewController = mvc;
     } else {
         LoginViewController* lvc = [[LoginViewController alloc] init];

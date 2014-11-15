@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *matches;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -28,6 +29,11 @@
     self.tableView.rowHeight = 96;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChatTableViewCell"];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadTable) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
     [self loadTable];
 }
 
@@ -40,6 +46,7 @@
     [[User user] matchesWithCompletion:^(NSArray *matches) {
         self.matches = matches;
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -64,7 +71,11 @@
     ChatViewController *cvc = [[ChatViewController alloc] init];
     cvc.match = match.match;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
-    [self presentViewController:nvc animated:YES completion:nil];
+    NSLog(@"%@", self.parentViewController);
+    [self.parentViewController presentViewController:nvc animated:YES completion:nil];
 }
 
+- (ViewType)viewType {
+    return ChatView;
+}
 @end

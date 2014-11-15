@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewType.h"
 
-@interface MainViewController : UIViewController<UIScrollViewDelegate>
+@protocol MainViewControllerDelegate
+
+- (ViewType)viewType;
+
+@end
+
+@interface MainViewController : UIViewController
 
 @end

@@ -15,15 +15,11 @@
 		23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A851A16C978001AD2F7 /* ChatTableViewCell.m */; };
 		23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */; };
 		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
-		23997A8F1A177D39001AD2F7 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */; };
-		23997A901A177D39001AD2F7 /* MainNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */; };
 		6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */; };
 		6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
 		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
-		C60006F11A149F2D00420B63 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EF1A149F2D00420B63 /* PreferencesViewController.m */; };
-		C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006F01A149F2D00420B63 /* PreferencesViewController.xib */; };
 		C6BC662D1A11B03500484AE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662C1A11B03500484AE4 /* main.m */; };
 		C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BC662F1A11B03500484AE4 /* AppDelegate.m */; };
 		C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6BC66371A11B03500484AE4 /* Images.xcassets */; };
@@ -62,9 +58,7 @@
 		23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		23997A891A16CF4C001AD2F7 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		23997A8A1A16CF4C001AD2F7 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
-		23997A8C1A177D39001AD2F7 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
-		23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
-		23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainNavigationViewController.xib; sourceTree = "<group>"; };
+		23997A921A17D95F001AD2F7 /* ViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewType.h; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -73,9 +67,6 @@
 		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C60006EA1A14976B00420B63 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C60006EB1A14976B00420B63 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		C60006EE1A149F2D00420B63 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
-		C60006EF1A149F2D00420B63 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
-		C60006F01A149F2D00420B63 /* PreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
 		C6BC66271A11B03500484AE4 /* tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6BC662B1A11B03500484AE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6BC662C1A11B03500484AE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,6 +118,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		23997A911A17D534001AD2F7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C60006E91A14976B00420B63 /* MainViewController.h */,
+				C60006EA1A14976B00420B63 /* MainViewController.m */,
+				C60006EB1A14976B00420B63 /* MainViewController.xib */,
+				23997A921A17D95F001AD2F7 /* ViewType.h */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		748F17A25573100F25368B16 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,9 +161,7 @@
 		C6BC66291A11B03500484AE4 /* tinder */ = {
 			isa = PBXGroup;
 			children = (
-				23997A8C1A177D39001AD2F7 /* MainNavigationViewController.h */,
-				23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */,
-				23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */,
+				23997A911A17D534001AD2F7 /* Main */,
 				C6BC666B1A11B4C400484AE4 /* Match */,
 				C6BC666A1A11B48A00484AE4 /* Settings */,
 				C6BC66691A11B48300484AE4 /* Chat */,
@@ -172,12 +172,6 @@
 				C6BC66371A11B03500484AE4 /* Images.xcassets */,
 				C6BC66391A11B03500484AE4 /* LaunchScreen.xib */,
 				C6BC662A1A11B03500484AE4 /* Supporting Files */,
-				C60006E91A14976B00420B63 /* MainViewController.h */,
-				C60006EA1A14976B00420B63 /* MainViewController.m */,
-				C60006EB1A14976B00420B63 /* MainViewController.xib */,
-				C60006EE1A149F2D00420B63 /* PreferencesViewController.h */,
-				C60006EF1A149F2D00420B63 /* PreferencesViewController.m */,
-				C60006F01A149F2D00420B63 /* PreferencesViewController.xib */,
 			);
 			path = tinder;
 			sourceTree = "<group>";
@@ -353,7 +347,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
-				C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */,
 				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
 				6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
@@ -362,7 +355,6 @@
 				C6BC66701A11B4F400484AE4 /* MatchScreenViewController.xib in Resources */,
 				23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */,
 				235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */,
-				23997A901A177D39001AD2F7 /* MainNavigationViewController.xib in Resources */,
 				C6BC66681A11B45100484AE4 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,11 +414,9 @@
 				6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */,
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
 				23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */,
-				23997A8F1A177D39001AD2F7 /* MainNavigationViewController.m in Sources */,
 				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,
-				C60006F11A149F2D00420B63 /* PreferencesViewController.m in Sources */,
 				235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */,
 				C6BC666F1A11B4F400484AE4 /* MatchScreenViewController.m in Sources */,
 			);

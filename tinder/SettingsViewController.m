@@ -208,11 +208,11 @@ const NSInteger kBudgetMax = 5000;
     
     PFUser *pfUser = [PFUser currentUser];
     
-    NSData *imageData = UIImagePNGRepresentation(self.photoImageView.image);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", pfUser.objectId] data:imageData];
-    [imageFile saveInBackground];
+    //NSData *imageData = UIImagePNGRepresentation(self.photoImageView.image);
+    //PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", pfUser.objectId] data:imageData];
+    //[imageFile saveInBackground];
     
-    [pfUser setObject:imageFile forKey:@"image"];
+    //[pfUser setObject:imageFile forKey:@"image"];
     [pfUser setObject:@([self getAge]) forKey:@"age"];
     [pfUser setObject:@([self getBudget]) forKey:@"budget"];
     [pfUser setObject:self.descriptionTextView.text forKey:@"desc"];
@@ -221,6 +221,10 @@ const NSInteger kBudgetMax = 5000;
     [pfUser saveInBackground];
     
     return YES;
+}
+
+- (ViewType)viewType {
+    return SettingsView;
 }
 
 /*

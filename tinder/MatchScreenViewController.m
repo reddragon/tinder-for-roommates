@@ -24,6 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (ViewType)viewType {
+    return MatchView;
+}
 /*
 #pragma mark - Navigation
 

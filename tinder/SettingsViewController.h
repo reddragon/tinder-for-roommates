@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
+@interface SettingsViewController : UIViewController<MainViewControllerDelegate>
 
-@interface SettingsViewController : UIViewController
+- (ViewType)viewType;
 
 @end

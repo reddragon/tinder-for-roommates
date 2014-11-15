@@ -9,5 +9,9 @@
 #ifndef tinder_ViewType_h
 #define tinder_ViewType_h
 
-
+typedef NS_ENUM(NSInteger, ViewType) {
+    SettingsView,
+    MatchView,
+    ChatView
+};
 #endif

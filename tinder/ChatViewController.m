@@ -21,16 +21,24 @@
     [super viewDidLoad];
     [self loadMessages];
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     // Create the timer object
+    /*
     [NSTimer scheduledTimerWithTimeInterval:10.0
                                      target:self
                                    selector:@selector(loadMessages)
                                    userInfo:nil
                                     repeats:YES];
+     */
+}
+
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadMessages {
-    return;
     [[User user] messagesWithUser:self.match withCompletion:^(NSArray *messages) {
         self.messages = [NSMutableArray arrayWithArray:messages];
         [self.collectionView reloadData];
@@ -95,15 +103,13 @@
                                              recipient:self.match.fbid
                                      senderDisplayName:[User user].name
                                                   text:text date:date];
-    NSLog(@"Name: %@", self.match.name);
     [self.messages addObject:message];
     [message saveInBackgroundWithCompletion:^(BOOL succeeded, NSError *error) {
         if (!succeeded) {
             NSLog(@"%@", error);
         }
     }];
-    
-    
+        
     [self finishSendingMessage];
 }
 

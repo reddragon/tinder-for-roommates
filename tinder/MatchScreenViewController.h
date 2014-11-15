@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
-@interface MatchScreenViewController : UIViewController
+@interface MatchScreenViewController : UIViewController<MainViewControllerDelegate>
+
+- (ViewType)viewType;
 
 @end

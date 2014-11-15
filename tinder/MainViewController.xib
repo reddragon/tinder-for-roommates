@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
-                <outlet property="navBar" destination="Hs8-ZB-5Nz" id="Wo2-gW-p8b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,26 +13,12 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hs8-ZB-5Nz">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                    <color key="backgroundColor" red="1" green="0.156979814" blue="0.042154324" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="vC8-MN-Rfd"/>
-                    </constraints>
-                </view>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
-            <constraints>
-                <constraint firstItem="Hs8-ZB-5Nz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eaV-bS-a7h"/>
-                <constraint firstItem="Hs8-ZB-5Nz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xGa-jI-cL9"/>
-                <constraint firstAttribute="trailing" secondItem="Hs8-ZB-5Nz" secondAttribute="trailing" id="zBO-2Q-xua"/>
-            </constraints>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="gT9-HC-E0Q" appends="YES" id="yFI-5T-gdV"/>
             </connections>
-            <point key="canvasLocation" x="259" y="332"/>
+            <point key="canvasLocation" x="651" y="418"/>
         </view>
         <panGestureRecognizer minimumNumberOfTouches="1" id="gT9-HC-E0Q">
             <connections>
