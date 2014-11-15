@@ -10,4 +10,13 @@
 
 @implementation Match
 
+- (id)initWithMatch:(User *)match date:(NSDate *)date {
+    self = [super init];
+    if (self) {
+        _match = match;
+        _date = date;
+    }
+    return self;
+}
+
 @end

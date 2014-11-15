@@ -12,12 +12,15 @@
 
 @interface Message : NSObject <JSQMessageData>
 
-@property NSUInteger sendId;
-@property NSUInteger to;
-@property NSString* text;
+@property (strong, nonatomic) NSString *senderFBID;
+@property (strong, nonatomic) NSString *recipientFBID;
+@property (strong, nonatomic) NSString *senderDisplayName;
+@property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSDate* date;
 
-@property User *sender;
+- (id)initWithPFObject:(PFObject *)object;
+- (id)initWithSender:(NSString *)senderFBID recipient:(NSString *)recipientFBID senderDisplayName:(NSString *)displayName text:(NSString *)text date:(NSDate *)date;
 
+- (void)saveInBackgroundWithCompletion:(void(^)(BOOL succeeded, NSError *error))completion;
 
 @end

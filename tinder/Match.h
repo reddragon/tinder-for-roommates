@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface Match : NSObject
+
+@property (strong, nonatomic) User* match;
+@property (strong, nonatomic) NSDate* date;
+
+- (id)initWithMatch:(User *)match date:(NSDate *)date;
 
 @end

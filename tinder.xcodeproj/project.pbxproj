@@ -10,6 +10,11 @@
 		235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EC8351A12FBC100BB50DD /* ChatViewController.m */; };
 		235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235EC8361A12FBC100BB50DD /* ChatViewController.xib */; };
 		235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235EC83F1A13FB5B00BB50DD /* avatar.jpg */; };
+		235EC8441A15CBFE00BB50DD /* ChatIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EC8421A15CBFE00BB50DD /* ChatIndexViewController.m */; };
+		235EC8451A15CBFE00BB50DD /* ChatIndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235EC8431A15CBFE00BB50DD /* ChatIndexViewController.xib */; };
+		23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A851A16C978001AD2F7 /* ChatTableViewCell.m */; };
+		23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */; };
+		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
 		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
@@ -45,6 +50,14 @@
 		235EC8351A12FBC100BB50DD /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		235EC8361A12FBC100BB50DD /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		235EC83F1A13FB5B00BB50DD /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
+		235EC8411A15CBFE00BB50DD /* ChatIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatIndexViewController.h; sourceTree = "<group>"; };
+		235EC8421A15CBFE00BB50DD /* ChatIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatIndexViewController.m; sourceTree = "<group>"; };
+		235EC8431A15CBFE00BB50DD /* ChatIndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatIndexViewController.xib; sourceTree = "<group>"; };
+		23997A841A16C978001AD2F7 /* ChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewCell.h; sourceTree = "<group>"; };
+		23997A851A16C978001AD2F7 /* ChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewCell.m; sourceTree = "<group>"; };
+		23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
+		23997A891A16CF4C001AD2F7 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		23997A8A1A16CF4C001AD2F7 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		82FF3710C0EC2B4E1B168D21 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -192,6 +205,8 @@
 				C6BC66551A11B0AC00484AE4 /* Message.m */,
 				C6BC665A1A11B29500484AE4 /* Like.h */,
 				C6BC665B1A11B29500484AE4 /* Like.m */,
+				23997A891A16CF4C001AD2F7 /* Match.h */,
+				23997A8A1A16CF4C001AD2F7 /* Match.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -209,6 +224,12 @@
 		C6BC66691A11B48300484AE4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				235EC8411A15CBFE00BB50DD /* ChatIndexViewController.h */,
+				235EC8421A15CBFE00BB50DD /* ChatIndexViewController.m */,
+				235EC8431A15CBFE00BB50DD /* ChatIndexViewController.xib */,
+				23997A841A16C978001AD2F7 /* ChatTableViewCell.h */,
+				23997A851A16C978001AD2F7 /* ChatTableViewCell.m */,
+				23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */,
 				235EC8341A12FBC100BB50DD /* ChatViewController.h */,
 				235EC8351A12FBC100BB50DD /* ChatViewController.m */,
 				235EC8361A12FBC100BB50DD /* ChatViewController.xib */,
@@ -319,8 +340,10 @@
 				C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */,
 				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
+				235EC8451A15CBFE00BB50DD /* ChatIndexViewController.xib in Resources */,
 				235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */,
 				C6BC66701A11B4F400484AE4 /* MatchScreenViewController.xib in Resources */,
+				23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */,
 				235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */,
 				C6BC66681A11B45100484AE4 /* LoginViewController.xib in Resources */,
 			);
@@ -374,9 +397,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6BC66531A11B09500484AE4 /* User.m in Sources */,
+				23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */,
+				235EC8441A15CBFE00BB50DD /* ChatIndexViewController.m in Sources */,
 				C6BC66561A11B0AC00484AE4 /* Message.m in Sources */,
 				C6BC66671A11B45100484AE4 /* LoginViewController.m in Sources */,
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
+				23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */,
 				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,

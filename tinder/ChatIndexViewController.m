@@ -7,8 +7,15 @@
 //
 
 #import "ChatIndexViewController.h"
+#import "ChatViewController.h"
+#import "ChatTableViewCell.h"
+#import "Match.h"
+#import "User.h"
 
-@interface ChatIndexViewController ()
+@interface ChatIndexViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *matches;
 
 @end
 
@@ -16,7 +23,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 96;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChatTableViewCell"];
+    [self loadTable];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self loadTable];
+}
+
+- (void)loadTable {
+    [[User user] matchesWithCompletion:^(NSArray *matches) {
+        self.matches = matches;
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +48,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.matches.count;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ChatTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatTableViewCell"];
+    Match *match = self.matches[indexPath.row];
+    cell.user = match.match;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Match *match = self.matches[indexPath.row];
+    ChatViewController *cvc = [[ChatViewController alloc] init];
+    cvc.match = match.match;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
 
 @end

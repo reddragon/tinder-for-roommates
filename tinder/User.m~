@@ -7,8 +7,6 @@
 //
 
 #import "User.h"
-#import "Match.h"
-#import "Message.h"
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
@@ -26,6 +24,12 @@ static User* _currentUser;
     }
 }
 
+<<<<<<< HEAD
+- (NSArray *)messagesFromUser:(NSUInteger)fromUser {
+    return @[];
+}
+
+=======
 + (void)populateFromPFUser {
     PFUser* user = [PFUser currentUser];
     _currentUser = [[User alloc] init];
@@ -39,25 +43,6 @@ static User* _currentUser;
     } else {
         _currentUser.preferences_set = NO;
     }
-}
-
-// Populate User from PFUser object
-- (id)initFromPFUser:(PFUser *)user {
-    self = [super init];
-    if (self) {
-        _fbid = user[@"fbid"];
-        _name = user[@"name"];
-        _first_name = user[@"first_name"];
-        _last_name = user[@"last_name"];
-        _location = user[@"location"];
-        _profileImageURL = [NSURL URLWithString:user[@"profile_image_url"]];
-        if (user[@"preferences_set"] != nil) {
-            _preferences_set = [user[@"preferences_set"] boolValue];
-        } else {
-            _preferences_set = NO;
-        }
-    }
-    return self;
 }
 
 // This method tries to fill up the PFUser model
@@ -106,50 +91,6 @@ static User* _currentUser;
     }
 }
 
-- (void)messagesWithUser:(User *)fromUser withCompletion:(void(^)(NSArray *messages))completion {
-    PFQuery *fromQuery = [PFQuery queryWithClassName:@"messages"];
-    [fromQuery whereKey:@"sender_fbid" equalTo:[User user].fbid];
-    [fromQuery whereKey:@"recipient_fbid" equalTo:fromUser.fbid];
-    
-    PFQuery *toQuery = [PFQuery queryWithClassName:@"messages"];
-    [fromQuery whereKey:@"sender_fbid" equalTo:fromUser.fbid];
-    [fromQuery whereKey:@"recipient_fbid" equalTo:[User user].fbid];
 
-    PFQuery *query = [PFQuery orQueryWithSubqueries:@[fromQuery, toQuery]];
-    [query orderByDescending:@"createdAt"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray *messages = [NSMutableArray array];
-        for (PFObject *object in objects) {
-            [messages addObject:[[Message alloc] initWithPFObject:object]];
-        }
-        completion(messages);
-    }];
-}
-
-// Get the matches for a user
--(void)matchesWithCompletion:(void(^)(NSArray *matches))completion {
-    PFQuery *fromQuery = [PFQuery queryWithClassName:@"matches"];
-    [fromQuery whereKey:@"from" equalTo:[PFUser currentUser]];
-    [fromQuery whereKey:@"matched" equalTo:@YES];
-    [fromQuery includeKey:@"to"];
-    [fromQuery includeKey:@"from"];
-    [fromQuery orderByDescending:@"createdAt"];
-    
-    [fromQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray *matches = [NSMutableArray array];
-        for (PFObject *object in objects) {
-            User *match;
-            if (object[@"to"][@"fbid"] == [User user].fbid) {
-                match = [[User alloc] initFromPFUser:object[@"from"]];
-            } else {
-                match = [[User alloc] initFromPFUser:object[@"to"]];
-            }
-            [matches addObject:[[Match alloc] initWithMatch:match date:object[@"createdAt"]]];
-        }
-        completion(matches);
-    }];
-    
-}
-
+>>>>>>> 0700824356b791bd715d570a3c20dfffb52b1de6
 @end

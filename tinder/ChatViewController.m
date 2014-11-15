@@ -19,31 +19,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Chat";
-    // self.title = self.match.name;
+    [self loadMessages];
     
-    self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [[JSQMessage alloc] initWithSenderId:self.senderId
-                                        senderDisplayName:self.senderDisplayName
-                                                     date:[NSDate distantPast]
-                                                     text:@"Testing a message."],
-                     
-                     [[JSQMessage alloc] initWithSenderId:@"2"
-                                        senderDisplayName:@"Mike"
-                                                     date:[NSDate distantPast]
-                                                     text:@"Hey, how are you?"],
-                     
-                     [[JSQMessage alloc] initWithSenderId:self.senderId
-                                        senderDisplayName:self.senderDisplayName
-                                                     date:[NSDate distantPast]
-                                                     text:@"I'm great thanks!."],
-                     
-                     [[JSQMessage alloc] initWithSenderId:@"2"
-                                        senderDisplayName:@"Mike"
-                                                     date:[NSDate date]
-                                                     text:@"Good!."],
-                     nil
-                     ];
+    // Create the timer object
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self
+                                   selector:@selector(loadMessages)
+                                   userInfo:nil
+                                    repeats:YES];
+}
+
+- (void)loadMessages {
+    [[User user] messagesWithUser:self.match withCompletion:^(NSArray *messages) {
+        self.messages = [NSMutableArray arrayWithArray:messages];
+        [self.collectionView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,11 +42,11 @@
 }
 
 - (NSString *)senderDisplayName {
-    return @"Alan";
+    return [User user].name;
 }
 
 - (NSString *)senderId {
-    return @"1";
+    return [User user].fbid;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -97,19 +87,23 @@
      *  1. Play sound (optional)
      *  2. Add new id<JSQMessageData> object to your data source
      *  3. Call `finishSendingMessage`
-     */
-    NSLog(@"hi");
-    
+     */    
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     
-    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId
-                                             senderDisplayName:self.senderDisplayName
-                                                          date:[[NSDate alloc] init]
-                                                          text:@"Test"];
-    
+    Message *message = [[Message alloc] initWithSender:self.senderId
+                                             recipient:self.match.fbid
+                                     senderDisplayName:[User user].name
+                                                  text:text date:date];
+    NSLog(@"Name: %@", self.match.name);
     [self.messages addObject:message];
+    [message saveInBackgroundWithCompletion:^(BOOL succeeded, NSError *error) {
+        if (!succeeded) {
+            NSLog(@"%@", error);
+        }
+    }];
+    
+    
     [self finishSendingMessage];
-    //[self.collectionView reloadData];
 }
 
 @end

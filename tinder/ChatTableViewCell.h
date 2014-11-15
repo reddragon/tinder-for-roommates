@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Message.h"
 
 @interface ChatTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) User *user;
 
 @end
