@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="imgView" destination="J3c-o4-4eq" id="btP-Bo-BWW"/>
                 <outlet property="nameLabel" destination="Gqj-je-eQD" id="F5N-OT-fx2"/>
-                <outlet property="onLike" destination="ssZ-Su-1Ta" id="v62-8s-b0c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="809-IX-VTZ">
-                    <rect key="frame" x="71" y="489" width="34" height="30"/>
+                    <rect key="frame" x="72" y="424" width="34" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Pass">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,11 +38,14 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ssZ-Su-1Ta">
-                    <rect key="frame" x="216" y="489" width="30" height="30"/>
+                    <rect key="frame" x="216" y="424" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Like">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="onLike:" destination="-1" eventType="touchUpInside" id="AZB-1C-HCv"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.92432637120000005" green="0.92432637120000005" blue="0.92432637120000005" alpha="1" colorSpace="calibratedRGB"/>

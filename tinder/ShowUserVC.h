@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ShowUserDelegate <NSObject>
+- (void)onDoneWithUserList;
+
+@end
+
 @interface ShowUserVC : UIViewController
+@property (strong, nonatomic) id<ShowUserDelegate> delegate;
 - (void)addNewUsersToShow:(NSMutableArray*) users;
 @end

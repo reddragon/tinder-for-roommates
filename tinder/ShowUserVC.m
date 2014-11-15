@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 - (IBAction)onPass:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *onLike;
+- (IBAction)onLike:(id)sender;
 @property (strong, nonatomic) NSMutableArray* usersToShow;
 @property NSUInteger userIndex;
 @end
@@ -61,6 +61,28 @@
 }
 */
 
+- (void)incrementIterator {
+    if (self.userIndex + 1>= self.usersToShow.count) {
+        NSLog(@"Ran out of profiles to show!");
+        if (self.delegate != nil) {
+            [self.delegate onDoneWithUserList];
+        }
+    } else {
+        self.userIndex++;
+    }
+}
+
 - (IBAction)onPass:(id)sender {
+    // TODO
+    // Register pass
+    [self incrementIterator];
+    [self prepareView];
+}
+
+- (IBAction)onLike:(id)sender {
+    // TODO
+    // Register like
+    [self incrementIterator];
+    [self prepareView];
 }
 @end

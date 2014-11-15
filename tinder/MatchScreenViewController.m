@@ -12,7 +12,7 @@
 #import "ShowUserVC.h"
 #import <Parse/Parse.h>
 
-@interface MatchScreenViewController ()
+@interface MatchScreenViewController ()<ShowUserDelegate>
 @property (strong, nonatomic) NSMutableArray* usersToShow;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) SearchingForPeopleVC* searchingVC;
@@ -27,6 +27,7 @@
     
     self.searchingVC = [[SearchingForPeopleVC alloc] init];
     self.showUserVC = [[ShowUserVC alloc] init];
+    self.showUserVC.delegate = self;
     
     self.searchingVC.view.frame = self.containerView.bounds;
     self.showUserVC.view.frame = self.containerView.bounds;
@@ -50,6 +51,16 @@
         }
     }];
     
+}
+
+- (void) initiateSearching {
+    // TODO
+    // Remove people you have passed.
+    [self.containerView addSubview:self.searchingVC.view];
+}
+
+- (void)onDoneWithUserList {
+    [self initiateSearching];
 }
 
 - (void)showNewResultsWithUsers:(NSMutableArray *)users {
