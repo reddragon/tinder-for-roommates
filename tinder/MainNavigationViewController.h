@@ -10,4 +10,6 @@
 
 @interface MainNavigationViewController : UIViewController
 
+@property (strong, nonatomic) UIPageViewController *pageController;
+
 @end

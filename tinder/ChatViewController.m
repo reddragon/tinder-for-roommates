@@ -22,7 +22,7 @@
     [self loadMessages];
     
     // Create the timer object
-    [NSTimer scheduledTimerWithTimeInterval:3.0
+    [NSTimer scheduledTimerWithTimeInterval:10.0
                                      target:self
                                    selector:@selector(loadMessages)
                                    userInfo:nil
@@ -30,6 +30,7 @@
 }
 
 - (void)loadMessages {
+    return;
     [[User user] messagesWithUser:self.match withCompletion:^(NSArray *messages) {
         self.messages = [NSMutableArray arrayWithArray:messages];
         [self.collectionView reloadData];

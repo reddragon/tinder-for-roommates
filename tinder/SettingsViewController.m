@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "User.h"
+#import "UIImageView+AFNetworking.h"
 
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
@@ -78,7 +79,7 @@ const NSInteger kBudgetMax = 5000;
     
     User *user = [User user];
     if (user.preferences_set) {
-        self.photoImageView.image = user.image;
+        [self.photoImageView setImageWithURL:user.profileImageURL];
         [self setAge:user.age];
         [self setBudget:user.budget];
         self.descriptionTextView.text = user.desc;

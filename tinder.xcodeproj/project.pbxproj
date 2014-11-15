@@ -15,6 +15,8 @@
 		23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A851A16C978001AD2F7 /* ChatTableViewCell.m */; };
 		23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */; };
 		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
+		23997A8F1A177D39001AD2F7 /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */; };
+		23997A901A177D39001AD2F7 /* MainNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */; };
 		6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */; };
 		6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
@@ -60,6 +62,9 @@
 		23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		23997A891A16CF4C001AD2F7 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		23997A8A1A16CF4C001AD2F7 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		23997A8C1A177D39001AD2F7 /* MainNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNavigationViewController.h; sourceTree = "<group>"; };
+		23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNavigationViewController.m; sourceTree = "<group>"; };
+		23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainNavigationViewController.xib; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -154,6 +159,9 @@
 		C6BC66291A11B03500484AE4 /* tinder */ = {
 			isa = PBXGroup;
 			children = (
+				23997A8C1A177D39001AD2F7 /* MainNavigationViewController.h */,
+				23997A8D1A177D39001AD2F7 /* MainNavigationViewController.m */,
+				23997A8E1A177D39001AD2F7 /* MainNavigationViewController.xib */,
 				C6BC666B1A11B4C400484AE4 /* Match */,
 				C6BC666A1A11B48A00484AE4 /* Settings */,
 				C6BC66691A11B48300484AE4 /* Chat */,
@@ -354,6 +362,7 @@
 				C6BC66701A11B4F400484AE4 /* MatchScreenViewController.xib in Resources */,
 				23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */,
 				235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */,
+				23997A901A177D39001AD2F7 /* MainNavigationViewController.xib in Resources */,
 				C6BC66681A11B45100484AE4 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +422,7 @@
 				6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */,
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
 				23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */,
+				23997A8F1A177D39001AD2F7 /* MainNavigationViewController.m in Sources */,
 				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,

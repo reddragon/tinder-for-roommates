@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Foo Bar. All rights reserved.
 //
 
-#import "User.h";
+#import "User.h"
 #import <Parse/Parse.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -20,6 +20,8 @@
 @property (strong, nonatomic) NSString* first_name;
 @property (strong, nonatomic) NSString* last_name;
 @property (strong, nonatomic) NSString* location;
+@property (strong, nonatomic) UIImage* image;
+
 @property BOOL preferences_set;
 
 @property (strong, nonatomic) NSURL* profileImageURL;

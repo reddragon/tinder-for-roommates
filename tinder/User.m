@@ -55,6 +55,7 @@ static User* _currentUser;
         _last_name = user[@"last_name"];
         _location = user[@"location"];
         _profileImageURL = [NSURL URLWithString:user[@"profile_image_url"]];
+        _image = [UIImage imageWithData:[user[@"image"] getData]];
         if (user[@"preferences_set"] != nil) {
             _preferences_set = [user[@"preferences_set"] boolValue];
         } else {

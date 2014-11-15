@@ -10,6 +10,7 @@
 
 #import "LoginViewController.h"
 #import "MainViewController.h"
+#import "MainNavigationViewController.h"
 #import <Parse/Parse.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
@@ -28,7 +29,7 @@
     
     if ([PFUser currentUser] && // Check if user is cached
             [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        MainViewController* mvc = [[MainViewController alloc] init];
+        MainNavigationViewController* mvc = [[MainNavigationViewController alloc] init];
         self.window.rootViewController = mvc;
     } else {
         LoginViewController* lvc = [[LoginViewController alloc] init];
