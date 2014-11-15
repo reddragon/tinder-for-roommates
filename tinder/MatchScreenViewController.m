@@ -7,16 +7,55 @@
 //
 
 #import "MatchScreenViewController.h"
+#import "User.h"
+#import "SearchingForPeopleVC.h"
+#import "ShowUserVC.h"
+#import <Parse/Parse.h>
 
 @interface MatchScreenViewController ()
-
+@property (strong, nonatomic) NSMutableArray* usersToShow;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) SearchingForPeopleVC* searchingVC;
+@property (strong, nonatomic) ShowUserVC* showUserVC;
 @end
 
 @implementation MatchScreenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    NSLog(@"Executing the query");
+    
+    self.searchingVC = [[SearchingForPeopleVC alloc] init];
+    self.showUserVC = [[ShowUserVC alloc] init];
+    
+    self.searchingVC.view.frame = self.containerView.bounds;
+    self.showUserVC.view.frame = self.containerView.bounds;
+    [self.containerView addSubview:self.searchingVC.view];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    User* user = [User user];
+    [query whereKey:@"fbid" notEqualTo:user.fbid];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"Objects size: %u", objects.count);
+            NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
+            for (PFUser* foundUser in objects) {
+                User* user = [[User alloc] initFromPFUser:foundUser];
+                NSLog(@"Found user: %@", user.name);
+                [newUsersToShow addObject:user];
+            }
+            [self showNewResultsWithUsers:newUsersToShow];
+        } else {
+            NSLog(@"Could not fetch users: %@", error);
+        }
+    }];
+    
+}
+
+- (void)showNewResultsWithUsers:(NSMutableArray *)users {
+    [self.showUserVC addNewUsersToShow:users];
+    [self.containerView addSubview:self.showUserVC.view];
+    // self.containerView = self.showUserVC.view;
 }
 
 - (void)didReceiveMemoryWarning {

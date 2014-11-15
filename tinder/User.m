@@ -39,7 +39,7 @@ static User* _currentUser;
     } else {
         _currentUser.preferences_set = NO;
     }
-    _currentUser.image = [UIImage imageWithData:[user[@"image"] getData]];
+    // _currentUser.image = [UIImage imageWithData:[user[@"image"] getData]];
     _currentUser.age = [(NSNumber *)user[@"age"] integerValue];
     _currentUser.budget = [(NSNumber *)user[@"budget"] integerValue];
     _currentUser.desc = user[@"desc"];
@@ -54,7 +54,7 @@ static User* _currentUser;
         _first_name = user[@"first_name"];
         _last_name = user[@"last_name"];
         _location = user[@"location"];
-        _profileImageURL = [NSURL URLWithString:user[@"profile_image_url"]];
+        _profileImageURL = [NSURL URLWithString:user[@"profileImgUrl"]];
         if (user[@"preferences_set"] != nil) {
             _preferences_set = [user[@"preferences_set"] boolValue];
         } else {
@@ -69,8 +69,10 @@ static User* _currentUser;
     PFUser* user = [PFUser currentUser];
     if (user != nil) {
         if (user[@"populated"] == nil) {
+            NSLog(@"Setting up the FBR");
             FBRequest *request = [FBRequest requestForMe];
             [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                NSLog(@"FBR got completed");
                 if (!error) {
                     NSDictionary *userData = (NSDictionary *)result;
                     // NSLog(@"Dict: %@", userData);
@@ -88,11 +90,27 @@ static User* _currentUser;
                     // NSString *birthday = userData[@"birthday"];
                     // NSString *relationship = userData[@"relationship_status"];
                     
-                    user[@"populated"] = @(YES);
+                    NSLog(@"Image Req");
+                    FBRequest *imgReq = [FBRequest requestForGraphPath:@"/me/picture?redirect=false&height=300&type=normal&width=300"];
+                    [imgReq startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                        NSLog(@"Img Req done");
+                        if (error == nil) {
+                            NSDictionary* dict = (NSDictionary*)result;
+                            NSLog(@"Dict: %@", dict);
+                            user[@"profileImgUrl"] = dict[@"data"][@"url"];
+                            // user[@"populated"] = @(YES);
+                            [user saveInBackground];
+                        } else {
+                            NSLog(@"Error: %@", error);
+                        }
+                    }];
+                    
+                    // user[@"populated"] = @(YES);
                     [user saveInBackground];
                     /*
                     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
                     */
+                    NSLog(@"Populating from PF User");
                     [User populateFromPFUser];
                     NSLog(@"User: %@", [[User user] name]);
                     
@@ -153,7 +171,6 @@ static User* _currentUser;
         }
         completion(matches);
     }];
-    
 }
 
 @end

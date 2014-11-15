@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, AppView) {
     _settingsViewController = [[SettingsViewController alloc] init];
     _chatViewController = [[ChatIndexViewController alloc] init];
 
-    
+    NSLog(@"Setting up with completion!");
     [User setUpWithCompletion:^{
         User* user = [User user];
 /*
