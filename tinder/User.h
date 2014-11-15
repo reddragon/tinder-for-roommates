@@ -26,13 +26,9 @@
 
 @property (strong, nonatomic) NSURL* profileImageURL;
 
-// TODO Fill age
+@property (strong, nonatomic) UIImage* image;
 @property NSUInteger age;
-
-// TODO Fill description
 @property (strong, nonatomic) NSString* desc;
-
-// Keeping the budge simple by taking an upper limit (non-float)
 @property NSUInteger budget;
 
 // Get an array of messages from another user

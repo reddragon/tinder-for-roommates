@@ -43,18 +43,18 @@ const NSInteger kBudgetMax = 5000;
     // Do any additional setup after loading the view from its nib.
     
     // Set up the navigation bar.
-    self.title = @"Settings";
-    CGRect frame = CGRectMake(0, 0, 30, 30);
-    UIImage *menuImage = [UIImage imageNamed:@"Menu"];
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:frame];
-    [menuButton setImage:menuImage forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(onMenuButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    UIImage *chatImage = [UIImage imageNamed:@"Chat"];
-    UIButton *chatButton = [[UIButton alloc] initWithFrame:frame];
-    [chatButton setImage:chatImage forState:UIControlStateNormal];
-    [chatButton addTarget:self action:@selector(onChatButtonTap:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:chatButton];
+//    self.title = @"Settings";
+//    CGRect frame = CGRectMake(0, 0, 30, 30);
+//    UIImage *menuImage = [UIImage imageNamed:@"Menu"];
+//    UIButton *menuButton = [[UIButton alloc] initWithFrame:frame];
+//    [menuButton setImage:menuImage forState:UIControlStateNormal];
+//    [menuButton addTarget:self action:@selector(onMenuButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+//    UIImage *chatImage = [UIImage imageNamed:@"Chat"];
+//    UIButton *chatButton = [[UIButton alloc] initWithFrame:frame];
+//    [chatButton setImage:chatImage forState:UIControlStateNormal];
+//    [chatButton addTarget:self action:@selector(onChatButtonTap:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:chatButton];
     
     // Set up the scroll view constraints.
     NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeLeading relatedBy:0 toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
@@ -87,6 +87,14 @@ const NSInteger kBudgetMax = 5000;
         self.photoImageView.image = [UIImage imageNamed:@"UploadPhoto"];
         [self setAge:21];
         [self setBudget:1000];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self saveSettings]) {
+        
+    } else {
+        
     }
 }
 
@@ -146,17 +154,21 @@ const NSInteger kBudgetMax = 5000;
     self.budgetLabel.text = [NSString stringWithFormat:@"$%ld", [self getBudget]];
 }
 
-- (IBAction)onMenuButtonTap:(id)sender {
-    if ([self saveSettings]) {
-        
-    }
-}
-
-- (IBAction)onChatButtonTap:(id)sender {
-    if ([self saveSettings]) {
-        
-    }
-}
+//- (IBAction)onMenuButtonTap:(id)sender {
+//    if ([self saveSettings]) {
+//        
+//    } else {
+//        
+//    }
+//}
+//
+//- (IBAction)onChatButtonTap:(id)sender {
+//    if ([self saveSettings]) {
+//        
+//    } else {
+//        
+//    }
+//}
 
 - (void)makeBorders:(CALayer *)layer {
     layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -187,19 +199,26 @@ const NSInteger kBudgetMax = 5000;
 }
 
 - (BOOL)saveSettings {
-    PFUser *user = [PFUser currentUser];
+    User *currentUser = [User user];
+    currentUser.image = self.photoImageView.image;
+    currentUser.age = [self getAge];
+    currentUser.budget = [self getBudget];
+    currentUser.desc = self.descriptionTextView.text;
+    currentUser.preferences_set = YES;
+    
+    PFUser *pfUser = [PFUser currentUser];
     
     NSData *imageData = UIImagePNGRepresentation(self.photoImageView.image);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", user.objectId] data:imageData];
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", pfUser.objectId] data:imageData];
     [imageFile saveInBackground];
     
-    [user setObject:imageFile forKey:@"image"];
-    [user setObject:@([self getAge]) forKey:@"age"];
-    [user setObject:@([self getBudget]) forKey:@"budget"];
-    [user setObject:self.descriptionTextView.text forKey:@"desc"];
-    [user setObject:@(YES) forKey:@"preferences_set"];
+    [pfUser setObject:imageFile forKey:@"image"];
+    [pfUser setObject:@([self getAge]) forKey:@"age"];
+    [pfUser setObject:@([self getBudget]) forKey:@"budget"];
+    [pfUser setObject:self.descriptionTextView.text forKey:@"desc"];
+    [pfUser setObject:@(YES) forKey:@"preferences_set"];
     
-    [user saveInBackground];
+    [pfUser saveInBackground];
     
     return YES;
 }
