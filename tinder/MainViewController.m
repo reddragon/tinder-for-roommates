@@ -127,7 +127,6 @@
     [self.view addSubview:self.navBar];
 
     self.settingsButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu"]];
-    self.settingsButton.backgroundColor = [UIColor redColor];
     self.settingsButton.userInteractionEnabled = YES;
     self.settingsButton.frame = CGRectMake(10,
                                            ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,

@@ -43,7 +43,7 @@
 }
 
 - (void)loadMessages {
-    [[User user] messagesWithUser:self.match withCompletion:^(NSArray *messages) {
+    [[User user] messagesWithUser:self.match.match withCompletion:^(NSArray *messages) {
         self.messages = [NSMutableArray arrayWithArray:messages];
         [self.collectionView reloadData];
     }];
@@ -104,7 +104,7 @@
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     
     Message *message = [[Message alloc] initWithSender:self.senderId
-                                             recipient:self.match.fbid
+                                             recipient:self.match.match.fbid
                                      senderDisplayName:[User user].name
                                                   text:text date:date];
     [self.messages addObject:message];
@@ -113,7 +113,11 @@
             NSLog(@"%@", error);
         }
     }];
-        
+    PFQuery *query = [PFQuery queryWithClassName:@"matches"];
+    [query getObjectInBackgroundWithId:self.match.matchID block:^(PFObject *match, NSError *error) {
+        match[@"last_message"] = text;
+        [match saveInBackground];
+    }];
     [self finishSendingMessage];
 }
 

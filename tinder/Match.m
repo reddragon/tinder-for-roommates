@@ -10,11 +10,13 @@
 
 @implementation Match
 
-- (id)initWithMatch:(User *)match date:(NSDate *)date {
+- (id)initWithMatch:(User *)match date:(NSDate *)date matchID:(NSString *)matchID lastMessage:(NSString *)lastMessage {
     self = [super init];
     if (self) {
         _match = match;
         _date = date;
+        _matchID = matchID;
+        _lastMessage = lastMessage;
     }
     return self;
 }

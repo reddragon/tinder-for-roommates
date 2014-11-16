@@ -44,6 +44,7 @@
 
 - (void)onRefresh {
     MainViewController *parent = (MainViewController *)self.parentViewController;
+    CGAffineTransform transform = parent.chatButton.transform;
     
     [UIView animateWithDuration:0.2
                           delay:0
@@ -58,7 +59,7 @@
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             parent.chatButton.transform = CGAffineTransformMakeScale(1, 1);
+                             parent.chatButton.transform = transform;
                          } completion:nil];
     }];
 }
@@ -90,14 +91,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ChatTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ChatTableViewCell"];
     Match *match = self.matches[indexPath.row];
-    cell.user = match.match;
+    cell.match = match;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Match *match = self.matches[indexPath.row];
     ChatViewController *cvc = [[ChatViewController alloc] init];
-    cvc.match = match.match;
+    cvc.match = match;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
     NSLog(@"%@", self.parentViewController);
     [self.parentViewController presentViewController:nvc animated:YES completion:nil];

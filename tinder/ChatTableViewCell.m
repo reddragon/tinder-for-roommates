@@ -24,8 +24,11 @@
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
-- (void)setUser:(User *)user {
-    _user = user;
+- (void)setMatch:(Match *)match {
+    _match = match;
+    User *user = match.match;
+    
+    NSLog(@"Match: %@", match.matchID);
     
     CGFloat cornerRadius = self.profileImageView.frame.size.width / 2;
     [self.profileImageView setImageWithURL:user.profileImageURL];
@@ -38,11 +41,18 @@
     self.containerView.layer.shadowOffset = CGSizeMake(1, 1);
     self.containerView.layer.shadowOpacity = 0.5;
     self.containerView.layer.shadowRadius = 2.0;
-    self.containerView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.containerView.bounds cornerRadius:cornerRadius].CGPath;
+    self.containerView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.containerView.bounds
+                                                                     cornerRadius:cornerRadius].CGPath;
     
     self.nameLabel.text = user.name;
-    self.subtitleLabel.text = @"Send a message...";
+    
+    if (self.match.lastMessage != nil) {
+        self.subtitleLabel.text = self.match.lastMessage;
+    } else {
+        self.subtitleLabel.text = [NSString stringWithFormat:@"Matched at %@", self.match.date];
+    }
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }

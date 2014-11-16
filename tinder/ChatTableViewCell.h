@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Message.h"
+#import "Match.h"
 
 @interface ChatTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Match *match;
 
 @end

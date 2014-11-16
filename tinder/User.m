@@ -167,7 +167,10 @@ static User* _currentUser;
             } else {
                 match = [[User alloc] initFromPFUser:object[@"to"]];
             }
-            [matches addObject:[[Match alloc] initWithMatch:match date:object[@"createdAt"]]];
+            [matches addObject:[[Match alloc] initWithMatch:match
+                                                       date:object.createdAt
+                                                    matchID:object.objectId
+                                                lastMessage:object[@"last_message"]]];
         }
         completion(matches);
     }];

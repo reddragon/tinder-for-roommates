@@ -13,7 +13,10 @@
 
 @property (strong, nonatomic) User* match;
 @property (strong, nonatomic) NSDate* date;
+@property (strong, nonatomic) NSString* text;
+@property (strong, nonatomic) NSString* matchID;
+@property (strong, nonatomic) NSString* lastMessage;
 
-- (id)initWithMatch:(User *)match date:(NSDate *)date;
+- (id)initWithMatch:(User *)match date:(NSDate *)date matchID:(NSString *)matchID lastMessage:(NSString *)lastMessage;
 
 @end
