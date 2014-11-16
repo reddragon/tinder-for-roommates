@@ -20,8 +20,6 @@
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
 		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
-		C60006F11A149F2D00420B63 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EF1A149F2D00420B63 /* PreferencesViewController.m */; };
-		C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006F01A149F2D00420B63 /* PreferencesViewController.xib */; };
 		C65C4A501A17C8B800EEFCC4 /* SearchingForPeopleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C4A4E1A17C8B800EEFCC4 /* SearchingForPeopleVC.m */; };
 		C65C4A511A17C8B800EEFCC4 /* SearchingForPeopleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C65C4A4F1A17C8B800EEFCC4 /* SearchingForPeopleVC.xib */; };
 		C65C4A551A17CA1E00EEFCC4 /* ShowUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C65C4A531A17CA1E00EEFCC4 /* ShowUserVC.m */; };
@@ -73,9 +71,6 @@
 		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C60006EA1A14976B00420B63 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		C60006EB1A14976B00420B63 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		C60006EE1A149F2D00420B63 /* PreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
-		C60006EF1A149F2D00420B63 /* PreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
-		C60006F01A149F2D00420B63 /* PreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
 		C65C4A4D1A17C8B800EEFCC4 /* SearchingForPeopleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchingForPeopleVC.h; sourceTree = "<group>"; };
 		C65C4A4E1A17C8B800EEFCC4 /* SearchingForPeopleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchingForPeopleVC.m; sourceTree = "<group>"; };
 		C65C4A4F1A17C8B800EEFCC4 /* SearchingForPeopleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchingForPeopleVC.xib; sourceTree = "<group>"; };
@@ -368,7 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
-				C60006F21A149F2D00420B63 /* PreferencesViewController.xib in Resources */,
 				C65C4A511A17C8B800EEFCC4 /* SearchingForPeopleVC.xib in Resources */,
 				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
 				6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */,

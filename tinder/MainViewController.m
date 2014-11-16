@@ -133,17 +133,22 @@
     UITapGestureRecognizer *pushSettings = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSettingsButton)];
     [self.settingsButton addGestureRecognizer:pushSettings];
 
-    UIView* blue = [[UIView alloc] initWithFrame:CGRectMake(140, 40, 40, 40)];
+    UIView* blue = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
     blue.backgroundColor = [UIColor blueColor];
+    blue.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2) - (blue.frame.size.width / 2),
+                            ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,
+                            blue.frame.size.width,
+                            blue.frame.size.height);
+
     UITapGestureRecognizer *pushMatch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onMatchButton)];
     [blue addGestureRecognizer:pushMatch];
     
     self.chatButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Chat"]];
     self.chatButton.userInteractionEnabled = YES;
-    self.chatButton.frame = CGRectMake(self.view.frame.size.width - self.chatButton.frame.size.width - 20,
-                                           ((self.navBar.frame.size.height - self.chatButton.frame.size.height) / 2) + 10,
-                                           self.chatButton.frame.size.width,
-                                           self.chatButton.frame.size.height);
+    self.chatButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width - self.chatButton.frame.size.width - 20,
+                                       ((self.navBar.frame.size.height - self.chatButton.frame.size.height) / 2) + 10,
+                                       self.chatButton.frame.size.width,
+                                       self.chatButton.frame.size.height);
     UITapGestureRecognizer *pushChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onChatButton)];
     [self.chatButton addGestureRecognizer:pushChat];
 
@@ -154,29 +159,35 @@
     self.navBarEdge = [[UIView alloc] initWithFrame:CGRectMake(0, self.navBar.frame.size.height, [[UIScreen mainScreen] bounds].size.width, 1)];
     self.navBarEdge.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:self.navBarEdge];
-    
-    self.matchViewController = [[MatchScreenViewController alloc] init];
-    self.settingsViewController = [[SettingsViewController alloc] init];
-    self.chatViewController = [[ChatIndexViewController alloc] init];
-    
-    [self addChildViewController:self.matchViewController];
-    [self addChildViewController:self.settingsViewController];
-    [self addChildViewController:self.chatViewController];
+
+    CGFloat contentY = self.navBar.frame.size.height + self.navBarEdge.frame.size.height;
+    CGRect initialFrame = CGRectMake(0,
+                                     contentY,
+                                     [[UIScreen mainScreen] bounds].size.width,
+                                     [[UIScreen mainScreen] bounds].size.height - contentY);
     
     NSLog(@"Setting up with completion!");
     [User setUpWithCompletion:^{
         User* user = [User user];
  
+        self.matchViewController = [[MatchScreenViewController alloc] init];
+        self.settingsViewController = [[SettingsViewController alloc] init];
+        self.chatViewController = [[ChatIndexViewController alloc] init];
+        
+        self.matchViewController.view.frame = initialFrame;
+        self.settingsViewController.view.frame = initialFrame;
+        self.chatViewController.view.frame = initialFrame;
+        
+        [self addChildViewController:self.matchViewController];
+        [self addChildViewController:self.settingsViewController];
+        [self addChildViewController:self.chatViewController];
+        
         if (user.preferences_set) {
             self.currentViewController = self.matchViewController;
         } else {
             self.currentViewController = self.settingsViewController;
         }
-        CGFloat contentY = self.navBar.frame.size.height + self.navBarEdge.frame.size.height;
-        self.currentViewController.view.frame = CGRectMake(0,
-                                                           contentY,
-                                                           self.currentViewController.view.frame.size.width,
-                                                           [[UIScreen mainScreen] bounds].size.height - contentY);
+        
         [self.view addSubview:self.currentViewController.view];
         
         [self.matchViewController didMoveToParentViewController:self];
@@ -250,7 +261,7 @@
         [self.slidingView removeFromSuperview];
         self.currentViewController.view.frame = CGRectMake(0,
                                                    self.navBar.frame.size.height + self.navBarEdge.frame.size.height,
-                                                   self.currentViewController.view.frame.size.width,
+                                                   self.view.frame.size.width,
                                                    self.currentViewController.view.frame.size.height);
         [self.view addSubview:self.currentViewController.view];
     }];
