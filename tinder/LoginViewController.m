@@ -10,7 +10,10 @@
 #import "MainViewController.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *loginScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end
 
@@ -18,7 +21,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.loginScrollView.delegate = self;
+    
+    CGFloat width = self.loginScrollView.frame.size.width;
+    UIView *first = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, self.loginScrollView.frame.size.height)];
+    first.backgroundColor = [UIColor blueColor];
+    UIView *second = [[UIView alloc] initWithFrame:CGRectMake(width, 0, width, self.loginScrollView.frame.size.height)];
+    second.backgroundColor = [UIColor redColor];
+    UIView *third = [[UIView alloc] initWithFrame:CGRectMake(2*width, 0, width, self.loginScrollView.frame.size.height)];
+    third.backgroundColor = [UIColor purpleColor];
+    UIView *fourth = [[UIView alloc] initWithFrame:CGRectMake(3*width, 0, width, self.loginScrollView.frame.size.height)];
+    fourth.backgroundColor = [UIColor blackColor];
+    UIView *fifth = [[UIView alloc] initWithFrame:CGRectMake(4*width, 0, width, self.loginScrollView.frame.size.height)];
+    fifth.backgroundColor = [UIColor yellowColor];
+    
+    self.loginScrollView.contentSize = CGSizeMake(width * 5, self.loginScrollView.frame.size.height);
+
+    [self.loginScrollView addSubview:first];
+    [self.loginScrollView addSubview:second];
+    [self.loginScrollView addSubview:third];
+    [self.loginScrollView addSubview:fourth];
+    [self.loginScrollView addSubview:fifth];
+}
+
+- (IBAction)changePage:(id)sender {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = self.loginScrollView.frame.size.width * self.pageControl.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.loginScrollView.frame.size;
+    [self.loginScrollView scrollRectToVisible:frame animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat width = self.loginScrollView.frame.size.width;
+    int page = floor((self.loginScrollView.contentOffset.x - width / 2) / width) + 1;
+    self.pageControl.currentPage = page;
 }
 
 - (void)didReceiveMemoryWarning {

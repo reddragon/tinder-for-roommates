@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="loginScrollView" destination="A40-5e-hm0" id="xQT-HP-dRl"/>
+                <outlet property="pageControl" destination="itw-hz-Hfb" id="MaP-9U-KUc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,21 +16,52 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jup-ZC-wGN">
-                    <rect key="frame" x="141" y="268" width="38" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Login">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jup-ZC-wGN">
+                    <rect key="frame" x="10" y="492" width="300" height="46"/>
+                    <state key="normal" image="Login">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="aVz-lS-mSm"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We don't post anything to Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjW-2Y-8rE">
+                    <rect key="frame" x="63" y="546" width="195" height="14"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A40-5e-hm0">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="432"/>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="itw-hz-Hfb">
+                    <rect key="frame" x="125" y="439" width="71" height="37"/>
+                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" red="0.16078431369999999" green="0.1843137255" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="changePage:" destination="-1" eventType="valueChanged" id="W0w-t2-l4t"/>
+                    </connections>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="A40-5e-hm0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0O1-NE-yXo"/>
+                <constraint firstItem="A40-5e-hm0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="38r-4W-lz3"/>
+                <constraint firstItem="CjW-2Y-8rE" firstAttribute="top" secondItem="jup-ZC-wGN" secondAttribute="bottom" constant="8" id="7zb-qN-Gwr"/>
+                <constraint firstAttribute="centerX" secondItem="CjW-2Y-8rE" secondAttribute="centerX" id="Ezi-HM-VOI"/>
+                <constraint firstAttribute="trailing" secondItem="A40-5e-hm0" secondAttribute="trailing" id="FSz-pb-dwn"/>
+                <constraint firstItem="jup-ZC-wGN" firstAttribute="top" secondItem="A40-5e-hm0" secondAttribute="bottom" constant="60" id="QF6-Lj-gs9"/>
+                <constraint firstAttribute="centerX" secondItem="itw-hz-Hfb" secondAttribute="centerX" id="Xub-Xm-N1O"/>
+                <constraint firstAttribute="centerX" secondItem="jup-ZC-wGN" secondAttribute="centerX" id="dYf-dR-r54"/>
+                <constraint firstAttribute="bottom" secondItem="CjW-2Y-8rE" secondAttribute="bottom" constant="8" id="eDM-Sf-ReQ"/>
+                <constraint firstItem="itw-hz-Hfb" firstAttribute="top" secondItem="A40-5e-hm0" secondAttribute="bottom" constant="8" id="k0l-0l-t4t"/>
+            </constraints>
             <point key="canvasLocation" x="413" y="398"/>
         </view>
     </objects>
+    <resources>
+        <image name="Login" width="300" height="46"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
