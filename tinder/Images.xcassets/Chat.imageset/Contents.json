@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon_50574.png"
+      "filename" : "iconmonstr-speech-bubble-13-icon-32.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "iconmonstr-speech-bubble-13-icon-64.png"
     },
     {
       "idiom" : "universal",

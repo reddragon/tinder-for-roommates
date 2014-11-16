@@ -32,12 +32,16 @@
 @property (assign, nonatomic) CGFloat matchPositionX;
 @property (assign, nonatomic) CGFloat chatPositionX;
 
+@property (strong, nonatomic) UIView *settingsButton;
+@property (strong, nonatomic) UIView *chatButton;
+
 @end
 
 @implementation MainViewController
 
 
 - (IBAction)onPan:(UIPanGestureRecognizer *)sender {
+    
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self showSlidingView];
     } else if (sender.state == UIGestureRecognizerStateChanged) {
@@ -45,8 +49,14 @@
         CGPoint translation = [sender translationInView:self.view];
         self.slidingView.center = CGPointMake(self.slidingView.center.x + translation.x, self.slidingView.center.y);
         self.navBar.center = CGPointMake(self.navBar.center.x + (translation.x / 2), self.navBar.center.y);
-
         [sender setTranslation:CGPointZero inView:self.view];
+
+        CGFloat navDistanceOffCenter = self.view.center.x - self.navBar.center.x;
+        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width;
+
+        self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
+        self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
+    
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         // Snap to a view, depending on where the frame currently is.
         CGPoint currentLocation = self.slidingView.frame.origin;
@@ -114,24 +124,32 @@
     self.navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 100)];
     [self.view addSubview:self.navBar];
 
-    UIView* red = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 40, 40)];
-    red.backgroundColor = [UIColor redColor];
+    self.settingsButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu"]];
+    self.settingsButton.userInteractionEnabled = YES;
+    self.settingsButton.frame = CGRectMake(20,
+                                           ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,
+                                           self.settingsButton.frame.size.width,
+                                           self.settingsButton.frame.size.height);
     UITapGestureRecognizer *pushSettings = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSettingsButton)];
-    [red addGestureRecognizer:pushSettings];
+    [self.settingsButton addGestureRecognizer:pushSettings];
 
     UIView* blue = [[UIView alloc] initWithFrame:CGRectMake(140, 40, 40, 40)];
     blue.backgroundColor = [UIColor blueColor];
     UITapGestureRecognizer *pushMatch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onMatchButton)];
     [blue addGestureRecognizer:pushMatch];
     
-    UIView* green = [[UIView alloc] initWithFrame:CGRectMake(260, 40, 40, 40)];
-    green.backgroundColor = [UIColor greenColor];
+    self.chatButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Chat"]];
+    self.chatButton.userInteractionEnabled = YES;
+    self.chatButton.frame = CGRectMake(self.view.frame.size.width - self.chatButton.frame.size.width - 20,
+                                           ((self.navBar.frame.size.height - self.chatButton.frame.size.height) / 2) + 10,
+                                           self.chatButton.frame.size.width,
+                                           self.chatButton.frame.size.height);
     UITapGestureRecognizer *pushChat = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onChatButton)];
-    [green addGestureRecognizer:pushChat];
+    [self.chatButton addGestureRecognizer:pushChat];
 
-    [self.navBar addSubview:red];
+    [self.navBar addSubview:self.settingsButton];
     [self.navBar addSubview:blue];
-    [self.navBar addSubview:green];
+    [self.navBar addSubview:self.chatButton];
     
     self.navBarEdge = [[UIView alloc] initWithFrame:CGRectMake(0, self.navBar.frame.size.height, [[UIScreen mainScreen] bounds].size.width, 1)];
     self.navBarEdge.backgroundColor = [UIColor lightGrayColor];
@@ -212,8 +230,20 @@
     }
 
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        // Finish the content slide animation
         self.slidingView.frame = CGRectMake(scrollContentToX, self.slidingView.frame.origin.y, self.slidingView.frame.size.width, self.slidingView.frame.size.height);
+
+        // Finish the nav slide animation
         self.navBar.frame = CGRectMake(scrollNavToX, 0, self.navBar.frame.size.width, self.navBar.frame.size.height);
+
+        CGFloat navDistanceOffCenter = self.view.center.x - self.navBar.center.x;
+        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width;
+
+        // Finish the Settings button scaling animation
+        self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
+        self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
+
     } completion:^(BOOL finished) {
         
         [self.slidingView removeFromSuperview];
