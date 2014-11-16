@@ -33,6 +33,7 @@
 @property (assign, nonatomic) CGFloat chatPositionX;
 
 @property (strong, nonatomic) UIView *settingsButton;
+@property (strong, nonatomic) UIView *matchButton;
 @property (strong, nonatomic) UIView *chatButton;
 
 @end
@@ -56,7 +57,9 @@
 
         self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
         self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
-    
+        
+        [self.matchButton setAlpha:1 - fabsf(scaleFactor * 2)];
+        
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         // Snap to a view, depending on where the frame currently is.
         CGPoint currentLocation = self.slidingView.frame.origin;
@@ -126,26 +129,26 @@
 
     self.settingsButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu"]];
     self.settingsButton.userInteractionEnabled = YES;
-    self.settingsButton.frame = CGRectMake(20,
+    self.settingsButton.frame = CGRectMake(10,
                                            ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,
                                            self.settingsButton.frame.size.width,
                                            self.settingsButton.frame.size.height);
     UITapGestureRecognizer *pushSettings = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSettingsButton)];
     [self.settingsButton addGestureRecognizer:pushSettings];
 
-    UIView* blue = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-    blue.backgroundColor = [UIColor blueColor];
-    blue.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2) - (blue.frame.size.width / 2),
+    self.matchButton = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    self.matchButton.backgroundColor = [UIColor blueColor];
+    self.matchButton.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width / 2) - (self.matchButton.frame.size.width / 2),
                             ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,
-                            blue.frame.size.width,
-                            blue.frame.size.height);
+                            self.matchButton.frame.size.width,
+                            self.matchButton.frame.size.height);
 
     UITapGestureRecognizer *pushMatch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onMatchButton)];
-    [blue addGestureRecognizer:pushMatch];
+    [self.matchButton addGestureRecognizer:pushMatch];
     
     self.chatButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Chat"]];
     self.chatButton.userInteractionEnabled = YES;
-    self.chatButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width - self.chatButton.frame.size.width - 20,
+    self.chatButton.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width - self.chatButton.frame.size.width - 10,
                                        ((self.navBar.frame.size.height - self.chatButton.frame.size.height) / 2) + 10,
                                        self.chatButton.frame.size.width,
                                        self.chatButton.frame.size.height);
@@ -153,7 +156,7 @@
     [self.chatButton addGestureRecognizer:pushChat];
 
     [self.navBar addSubview:self.settingsButton];
-    [self.navBar addSubview:blue];
+    [self.navBar addSubview:self.matchButton];
     [self.navBar addSubview:self.chatButton];
     
     self.navBarEdge = [[UIView alloc] initWithFrame:CGRectMake(0, self.navBar.frame.size.height, [[UIScreen mainScreen] bounds].size.width, 1)];
@@ -255,6 +258,10 @@
         // Finish the Settings button scaling animation
         self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
         self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
+
+        // Finish the middle button fade
+        self.matchButton.alpha = 1 - fabsf(scaleFactor * 2);
+
 
     } completion:^(BOOL finished) {
         
