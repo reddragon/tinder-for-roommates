@@ -33,24 +33,40 @@
     self.showUserVC.view.frame = self.containerView.bounds;
     [self.containerView addSubview:self.searchingVC.view];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    User* user = [User user];
-    [query whereKey:@"fbid" notEqualTo:user.fbid];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    // Get the people I have seen before. These can be either
+    // the people I 'like'd or 'pass'ed.
+    PFQuery *seenBeforeQuery = [PFQuery queryWithClassName:@"matches"];
+    [seenBeforeQuery whereKey:@"from" equalTo:[User pfUser]];
+    [seenBeforeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Objects size: %u", objects.count);
-            NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
-            for (PFUser* foundUser in objects) {
-                User* user = [[User alloc] initFromPFUser:foundUser];
-                NSLog(@"Found user: %@", user.name);
-                [newUsersToShow addObject:user];
+            NSLog(@"Num Objects: %d", objects.count);
+            NSMutableArray* usersToExclude = [[NSMutableArray alloc] init];
+            for (PFObject* match in objects) {
+                NSLog(@"Seen: %@", match[@"to_fbid"]);
+                [usersToExclude addObject:match[@"to_fbid"]];
             }
-            [self showNewResultsWithUsers:newUsersToShow];
+            
+            // Add myself to the users to exclude as well.
+            [usersToExclude addObject:[[User user] fbid]];
+            PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+            [query whereKey:@"fbid" notContainedIn:usersToExclude];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
+                    for (PFUser* foundUser in objects) {
+                        User* user = [[User alloc] initFromPFUser:foundUser];
+                        [newUsersToShow addObject:user];
+                    }
+                    [self showNewResultsWithUsers:newUsersToShow];
+                } else {
+                    NSLog(@"Could not make the second query to fetch actual users!");
+                }
+            }];
+            
         } else {
-            NSLog(@"Could not fetch users: %@", error);
+            NSLog(@"Had some problem while getting people we have seen before: %@", error);
         }
     }];
-    
 }
 
 - (void) initiateSearching {

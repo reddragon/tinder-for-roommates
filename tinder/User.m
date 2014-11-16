@@ -19,6 +19,13 @@ static User* _currentUser;
     return _currentUser;
 }
 
++ (PFUser*)pfUser {
+    if (_currentUser == nil) {
+        return nil;
+    }
+    return _currentUser.pfUser;
+}
+
 + (void)logout {
     User* user = [User user];
     if (user != nil) {
@@ -28,27 +35,11 @@ static User* _currentUser;
 
 + (void)populateFromPFUser {
     PFUser* user = [PFUser currentUser];
-    _currentUser = [[User alloc] init];
-    _currentUser.fbid = user[@"fbid"];
-    _currentUser.name = user[@"name"];
-    _currentUser.first_name = user[@"first_name"];
-    _currentUser.last_name = user[@"last_name"];
-    _currentUser.location = user[@"location"];
-    _currentUser.profileImageURL =  [NSURL URLWithString:user[@"profileImgUrl"]];
-
-    if (user[@"preferences_set"] != nil) {
-        _currentUser.preferences_set = [user[@"preferences_set"] boolValue];
-    } else {
-        _currentUser.preferences_set = NO;
-    }
-    // _currentUser.image = [UIImage imageWithData:[user[@"image"] getData]];
-    _currentUser.age = [(NSNumber *)user[@"age"] integerValue];
-    _currentUser.budget = [(NSNumber *)user[@"budget"] integerValue];
-    _currentUser.desc = user[@"desc"];
+    _currentUser = [[User alloc] initFromPFUser:user];
 }
 
 // Populate User from PFUser object
-- (id)initFromPFUser:(PFUser *)user {
+- (User*)initFromPFUser:(PFUser *)user {
     self = [super init];
     if (self) {
         _fbid = user[@"fbid"];
@@ -62,6 +53,10 @@ static User* _currentUser;
         } else {
             _preferences_set = NO;
         }
+        _age = [(NSNumber *)user[@"age"] integerValue];
+        _budget = [(NSNumber *)user[@"budget"] integerValue];
+        _desc = user[@"desc"];
+        _pfUser = user;
     }
     return self;
 }
@@ -71,10 +66,8 @@ static User* _currentUser;
     PFUser* user = [PFUser currentUser];
     if (user != nil) {
         if (user[@"populated"] == nil) {
-            NSLog(@"Setting up the FBR");
             FBRequest *request = [FBRequest requestForMe];
             [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                NSLog(@"FBR got completed");
                 if (!error) {
                     NSDictionary *userData = (NSDictionary *)result;
                     // NSLog(@"Dict: %@", userData);
@@ -95,7 +88,7 @@ static User* _currentUser;
                     NSLog(@"Image Req");
                     FBRequest *imgReq = [FBRequest requestForGraphPath:@"/me/picture?redirect=false&height=300&type=normal&width=300"];
                     [imgReq startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                        NSLog(@"Img Req done");
+                        // NSLog(@"Img Req done");
                         if (error == nil) {
                             NSDictionary* dict = (NSDictionary*)result;
                             NSLog(@"Dict: %@", dict);

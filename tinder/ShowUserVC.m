@@ -9,6 +9,7 @@
 #import "ShowUserVC.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import <Parse/Parse.h>
 
 @interface ShowUserVC ()
 
@@ -40,7 +41,7 @@
 }
 
 - (void)prepareView {
-    User* userToShow = [self.usersToShow objectAtIndex:self.userIndex];
+    User* userToShow = [self currentUserForMatching];
     [self.imgView setImageWithURL:userToShow.profileImageURL];
     [self.nameLabel setText:userToShow.name];
 }
@@ -72,17 +73,31 @@
     }
 }
 
-- (IBAction)onPass:(id)sender {
-    // TODO
-    // Register pass
+- (User*)currentUserForMatching {
+    User* userToShow = [self.usersToShow objectAtIndex:self.userIndex];
+    return userToShow;
+}
+
+- (void)registerLikeOrPass:(BOOL)like {
+    PFObject* match = [[PFObject alloc] initWithClassName:@"matches"];
+    match[@"from"] = [[User user] pfUser];
+    match[@"from_fbid"] = [[User user] fbid];
+    
+    
+    match[@"to"] = [[self currentUserForMatching] pfUser];
+    match[@"to_fbid"] = [[self currentUserForMatching] fbid];
+    match[@"matched"] = @(like);
+    [match saveInBackground];
+    
     [self incrementIterator];
     [self prepareView];
 }
 
+- (IBAction)onPass:(id)sender {
+    [self registerLikeOrPass:NO];
+}
+
 - (IBAction)onLike:(id)sender {
-    // TODO
-    // Register like
-    [self incrementIterator];
-    [self prepareView];
+    [self registerLikeOrPass:YES];
 }
 @end

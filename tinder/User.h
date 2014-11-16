@@ -30,6 +30,8 @@
 @property (strong, nonatomic) NSString* desc;
 @property NSUInteger budget;
 
+@property (strong, nonatomic) PFUser* pfUser;
+
 // Get an array of messages from another user
 - (void)messagesWithUser:(User *)fromUser withCompletion:(void(^)(NSArray *messages))completion;
 
@@ -37,10 +39,12 @@
 - (void)matchesWithCompletion:(void(^)(NSArray *matches))completion;
 
 // Populate User from PFUser object
-- (id)initFromPFUser:(PFUser *)pfUser;
+- (User*)initFromPFUser:(PFUser *)pfUser;
 
 // Currently logged in user
 + (User*)user;
++ (PFUser*)pfUser;
+
 + (void)logout;
 + (void)setUpWithCompletion:(void(^)(void))completion;
 
