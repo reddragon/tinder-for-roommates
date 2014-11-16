@@ -13,21 +13,24 @@
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface SettingsViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+//@interface SettingsViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface SettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-@property (weak, nonatomic) IBOutlet UIView *photoView;
+//@property (weak, nonatomic) IBOutlet UIView *photoView;
 @property (weak, nonatomic) IBOutlet UIView *ageView;
 @property (weak, nonatomic) IBOutlet UIView *budgetView;
 @property (weak, nonatomic) IBOutlet UIView *descriptionView;
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UISlider *ageSlider;
 @property (weak, nonatomic) IBOutlet UILabel *budgetLabel;
 @property (weak, nonatomic) IBOutlet UISlider *budgetSlider;
+
+//@property (nonatomic) BOOL isPhotoUpdated;
 
 @end
 
@@ -68,25 +71,29 @@ const NSInteger kBudgetMax = 5000;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     // Set up subview borders and corners.
-    [self makeRoundedCorners:self.photoView.layer];
-    [self makeRoundedCorners:self.ageView.layer];
-    [self makeRoundedCorners:self.budgetView.layer];
-    [self makeRoundedCorners:self.descriptionView.layer];
-    [self makeBorders:self.photoImageView.layer];
-    [self makeRoundedCorners:self.photoImageView.layer];
+//    [self makeRoundedCorners:self.photoView.layer];
+//    [self makeRoundedCorners:self.ageView.layer];
+//    [self makeRoundedCorners:self.budgetView.layer];
+//    [self makeRoundedCorners:self.descriptionView.layer];
+//    [self makeBorders:self.photoImageView.layer];
+//    [self makeRoundedCorners:self.photoImageView.layer];
     [self makeBorders:self.descriptionTextView.layer];
     [self makeRoundedCorners:self.descriptionTextView.layer];
     
     User *user = [User user];
     if (user.preferences_set) {
-        [self.photoImageView setImageWithURL:user.profileImageURL];
+//        [self.photoImageView setImageWithURL:user.profileImageURL];
         [self setAge:user.age];
         [self setBudget:user.budget];
         self.descriptionTextView.text = user.desc;
+        
+//        self.isPhotoUpdated = YES;
     } else {
-        self.photoImageView.image = [UIImage imageNamed:@"UploadPhoto"];
+//        self.photoImageView.image = [UIImage imageNamed:@"UploadPhoto"];
         [self setAge:21];
         [self setBudget:1000];
+        
+//        self.isPhotoUpdated = NO;
     }
 }
 
@@ -94,7 +101,15 @@ const NSInteger kBudgetMax = 5000;
     if ([self saveSettings]) {
         
     } else {
+//        if (!self.isPhotoUpdated) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incomplete Settings" message:@"Please select a photo." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [alert show];
+//        }
         
+        if ([self.descriptionTextView.text isEqualToString:@""]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incomplete Settings" message:@"Please write a description about yourself." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
 }
 
@@ -125,26 +140,27 @@ const NSInteger kBudgetMax = 5000;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    self.photoImageView.image = chosenImage;
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+//    self.photoImageView.image = chosenImage;
+//    self.isPhotoUpdated = YES;
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//}
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+//    [picker dismissViewControllerAnimated:YES completion:nil];
+//}
 
 - (IBAction)onViewTap:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
 }
 
-- (IBAction)onPhotoImageViewTap:(id)sender {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    [self presentViewController:picker animated:YES completion:nil];
-}
+//- (IBAction)onPhotoImageViewTap:(id)sender {
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//    [self presentViewController:picker animated:YES completion:nil];
+//}
 
 - (IBAction)onAgeSliderValueChanged:(id)sender {
     self.ageLabel.text = [NSString stringWithFormat:@"%ld", [self getAge]];
@@ -200,27 +216,39 @@ const NSInteger kBudgetMax = 5000;
 
 - (BOOL)saveSettings {
     User *currentUser = [User user];
-    currentUser.image = self.photoImageView.image;
+//    if (self.isPhotoUpdated) {
+//        currentUser.image = self.photoImageView.image;
+//    }
     currentUser.age = [self getAge];
     currentUser.budget = [self getBudget];
     currentUser.desc = self.descriptionTextView.text;
     currentUser.preferences_set = YES;
     
     PFUser *pfUser = [PFUser currentUser];
-    
-    //NSData *imageData = UIImagePNGRepresentation(self.photoImageView.image);
-    //PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", pfUser.objectId] data:imageData];
-    //[imageFile saveInBackground];
-    
-    //[pfUser setObject:imageFile forKey:@"image"];
+//    if (self.isPhotoUpdated) {
+//        NSData *imageData = UIImagePNGRepresentation(self.photoImageView.image);
+//        PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", pfUser.objectId] data:imageData];
+//        [imageFile saveInBackground];
+//
+//        [pfUser setObject:imageFile forKey:@"image"];
+//    }
     [pfUser setObject:@([self getAge]) forKey:@"age"];
     [pfUser setObject:@([self getBudget]) forKey:@"budget"];
     [pfUser setObject:self.descriptionTextView.text forKey:@"desc"];
-    [pfUser setObject:@(YES) forKey:@"preferences_set"];
+
+//    if (self.isPhotoUpdated && ![self.descriptionTextView.text isEqualToString:@""]) {
+    if (![self.descriptionTextView.text isEqualToString:@""]) {
+        [pfUser setObject:@(YES) forKey:@"preferences_set"];
+    }
     
     [pfUser saveInBackground];
     
-    return YES;
+//    if (self.isPhotoUpdated && ![self.descriptionTextView.text isEqualToString:@""]) {
+    if (![self.descriptionTextView.text isEqualToString:@""]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (ViewType)viewType {
