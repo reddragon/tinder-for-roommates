@@ -22,9 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-
+ 
     [Parse setApplicationId:@"U7mZG2sJaK4OBFiKPPGLgzIPAFE1NMc2yAI4shkj" clientKey: @"D6qSsbM4dDYstQLrMdoI5NHatWTXP6ZlBj4jAJjB"];
     [PFFacebookUtils initializeFacebook];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     

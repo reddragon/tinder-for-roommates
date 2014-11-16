@@ -34,6 +34,8 @@ static User* _currentUser;
     _currentUser.first_name = user[@"first_name"];
     _currentUser.last_name = user[@"last_name"];
     _currentUser.location = user[@"location"];
+    _currentUser.profileImageURL =  [NSURL URLWithString:user[@"profileImgUrl"]];
+
     if (user[@"preferences_set"] != nil) {
         _currentUser.preferences_set = [user[@"preferences_set"] boolValue];
     } else {

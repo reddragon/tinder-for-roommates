@@ -8,6 +8,7 @@
 
 #import "ChatViewController.h"
 #import "Message.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ChatViewController ()
 
@@ -85,7 +86,16 @@
 }
 
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"avatar.jpg"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+    
+    JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
+    UIImageView *avatar = [[UIImageView alloc] init];
+    
+    if ([message.senderId isEqualToString:self.senderId]) {
+        [avatar setImageWithURL:[User user].profileImageURL];
+    } else {
+        [avatar setImageWithURL:self.match.match.profileImageURL];
+    }
+    return [JSQMessagesAvatarImageFactory avatarImageWithImage:avatar.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
 }
 
 - (void)didPressSendButton:(UIButton *)button
