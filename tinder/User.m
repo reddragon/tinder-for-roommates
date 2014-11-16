@@ -138,7 +138,7 @@ static User* _currentUser;
     [fromQuery whereKey:@"recipient_fbid" equalTo:[User user].fbid];
 
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[fromQuery, toQuery]];
-    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray *messages = [NSMutableArray array];
