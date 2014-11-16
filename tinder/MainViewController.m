@@ -163,6 +163,7 @@
     [self addChildViewController:self.settingsViewController];
     [self addChildViewController:self.chatViewController];
     
+    NSLog(@"Setting up with completion!");
     [User setUpWithCompletion:^{
         User* user = [User user];
  
