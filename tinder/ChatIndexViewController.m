@@ -26,12 +26,12 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 96;
+    self.tableView.rowHeight = 76;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ChatTableViewCell" bundle:nil] forCellReuseIdentifier:@"ChatTableViewCell"];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(loadTable) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [self loadTable];
@@ -42,12 +42,40 @@
     [self loadTable];
 }
 
-- (void)loadTable {
+- (void)onRefresh {
+    MainViewController *parent = (MainViewController *)self.parentViewController;
+    
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         parent.chatButton.transform = CGAffineTransformMakeScale(1.6, 1.6);
+                     }
+                     completion:nil];
+    [self loadTableWithCompletion:^{
+        [parent.chatButton.layer removeAllAnimations];
+        [UIView animateWithDuration:0.4
+                              delay:0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             parent.chatButton.transform = CGAffineTransformMakeScale(1, 1);
+                         } completion:nil];
+    }];
+}
+
+- (void)loadTableWithCompletion:(void(^)(void))completion {
     [[User user] matchesWithCompletion:^(NSArray *matches) {
         self.matches = matches;
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
+        if (completion != nil) {
+            completion();
+        }
     }];
+}
+     
+- (void)loadTable {
+    [self loadTableWithCompletion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

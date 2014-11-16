@@ -17,4 +17,6 @@
 
 @interface MainViewController : UIViewController
 
+@property (strong, nonatomic) UIView *chatButton;
+
 @end

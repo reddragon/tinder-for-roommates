@@ -34,7 +34,6 @@
 
 @property (strong, nonatomic) UIView *settingsButton;
 @property (strong, nonatomic) UIView *matchButton;
-@property (strong, nonatomic) UIView *chatButton;
 
 @end
 
@@ -124,10 +123,11 @@
     [super viewDidLoad];
 
     
-    self.navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 100)];
+    self.navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 80)];
     [self.view addSubview:self.navBar];
 
     self.settingsButton = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Menu"]];
+    self.settingsButton.backgroundColor = [UIColor redColor];
     self.settingsButton.userInteractionEnabled = YES;
     self.settingsButton.frame = CGRectMake(10,
                                            ((self.navBar.frame.size.height - self.settingsButton.frame.size.height) / 2) + 10,
