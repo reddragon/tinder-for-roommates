@@ -14,6 +14,6 @@
 
 @interface ChatViewController : JSQMessagesViewController
 
-@property (weak, nonatomic) Match* match;
+@property (strong, nonatomic) Match* match;
 
 @end

@@ -151,24 +151,40 @@ static User* _currentUser;
     [fromQuery whereKey:@"from" equalTo:[PFUser currentUser]];
     [fromQuery whereKey:@"matched" equalTo:@YES];
     [fromQuery includeKey:@"to"];
-    [fromQuery includeKey:@"from"];
     [fromQuery orderByDescending:@"createdAt"];
+
+    PFQuery *toQuery = [PFQuery queryWithClassName:@"matches"];
+    [toQuery whereKey:@"to" equalTo:[PFUser currentUser]];
+    [toQuery whereKey:@"matched" equalTo:@YES];
+    [toQuery includeKey:@"from"];
+    [toQuery orderByDescending:@"createdAt"];
     
-    [fromQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray *matches = [NSMutableArray array];
-        for (PFObject *object in objects) {
-            User *match;
-            if (object[@"to"][@"fbid"] == [User user].fbid) {
-                match = [[User alloc] initFromPFUser:object[@"from"]];
-            } else {
-                match = [[User alloc] initFromPFUser:object[@"to"]];
-            }
-            [matches addObject:[[Match alloc] initWithMatch:match
-                                                       date:object.createdAt
-                                                    matchID:object.objectId
-                                                lastMessage:object[@"last_message"]]];
+    NSMutableArray *matches = [NSMutableArray array];
+    [fromQuery findObjectsInBackgroundWithBlock:^(NSArray *fromObjects, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error);
+            completion(nil);
+            return;
         }
-        completion(matches);
+        
+        [toQuery findObjectsInBackgroundWithBlock:^(NSArray *toObjects, NSError *error) {
+
+            for (PFObject *fromObject in fromObjects) {
+                User *match = [[User alloc] initFromPFUser:fromObject[@"to"]];
+                [matches addObject:[[Match alloc] initWithMatch:match
+                                                           date:fromObject.createdAt
+                                                        matchID:fromObject.objectId
+                                                    lastMessage:fromObject[@"last_message"]]];
+            }
+            for (PFObject *toObject in toObjects) {
+                User *match = [[User alloc] initFromPFUser:toObject[@"from"]];
+                [matches addObject:[[Match alloc] initWithMatch:match
+                                                           date:toObject.createdAt
+                                                        matchID:toObject.objectId
+                                                    lastMessage:toObject[@"last_message"]]];
+            }
+            completion(matches);
+        }];
     }];
 }
 

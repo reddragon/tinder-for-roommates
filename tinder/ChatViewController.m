@@ -89,12 +89,14 @@
     
     JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
     UIImageView *avatar = [[UIImageView alloc] init];
+    UIImage *defaultAvatar = [UIImage imageNamed:@"Profile"];
     
     if ([message.senderId isEqualToString:self.senderId]) {
-        [avatar setImageWithURL:[User user].profileImageURL];
+        [avatar setImageWithURL:[User user].profileImageURL placeholderImage:defaultAvatar];
     } else {
-        [avatar setImageWithURL:self.match.match.profileImageURL];
+        [avatar setImageWithURL:self.match.match.profileImageURL placeholderImage:defaultAvatar];
     }
+    
     return [JSQMessagesAvatarImageFactory avatarImageWithImage:avatar.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
 }
 

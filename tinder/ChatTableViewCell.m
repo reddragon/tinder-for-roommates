@@ -28,10 +28,10 @@
     _match = match;
     User *user = match.match;
     
-    NSLog(@"Match: %@", match.matchID);
-    
     CGFloat cornerRadius = self.profileImageView.frame.size.width / 2;
-    [self.profileImageView setImageWithURL:user.profileImageURL];
+
+    UIImage *defaultAvatar = [UIImage imageNamed:@"Profile"];
+    [self.profileImageView setImageWithURL:user.profileImageURL placeholderImage:defaultAvatar];
     self.profileImageView.layer.cornerRadius = cornerRadius;
     [self.profileImageView.layer setMasksToBounds:YES];
     self.profileImageView.clipsToBounds = YES;

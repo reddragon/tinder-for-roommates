@@ -100,7 +100,6 @@
     ChatViewController *cvc = [[ChatViewController alloc] init];
     cvc.match = match;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
-    NSLog(@"%@", self.parentViewController);
     [self.parentViewController presentViewController:nvc animated:YES completion:nil];
 }
 
