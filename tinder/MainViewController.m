@@ -48,7 +48,7 @@
         // Let the user drag the view horizontally
         CGPoint translation = [sender translationInView:self.view];
         self.slidingView.center = CGPointMake(self.slidingView.center.x + translation.x, self.slidingView.center.y);
-        self.navBar.center = CGPointMake(self.navBar.center.x + (translation.x / 2), self.navBar.center.y);
+        self.navBar.center = CGPointMake(self.navBar.center.x + (translation.x / 3), self.navBar.center.y);
         [sender setTranslation:CGPointZero inView:self.view];
 
         CGFloat navDistanceOffCenter = self.view.center.x - self.navBar.center.x;
@@ -229,7 +229,7 @@
     switch (view) {
         case SettingsView:
             self.currentViewController = self.settingsViewController;
-            scrollNavToX = 120;
+            scrollNavToX = 130;
             break;
         case MatchView:
             scrollContentToX = 0 - self.matchPositionX;
@@ -238,7 +238,7 @@
             break;
         case ChatView:
             scrollContentToX = 0 - self.chatPositionX;
-            scrollNavToX = -120;
+            scrollNavToX = -130;
             self.currentViewController = self.chatViewController;
             break;
     }
