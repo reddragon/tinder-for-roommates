@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSString* first_name;
 @property (strong, nonatomic) NSString* last_name;
 @property (strong, nonatomic) NSString* location;
-@property (strong, nonatomic) UIImage* image;
+@property (strong, nonatomic) UIImage* profileImage;
 
 @property BOOL preferences_set;
 

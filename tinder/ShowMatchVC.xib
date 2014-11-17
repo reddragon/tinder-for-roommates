@@ -6,7 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowMatchVC">
             <connections>
-                <outlet property="matchingUserName" destination="sfI-5R-8sA" id="UPZ-B3-ZsX"/>
+                <outlet property="chatButton" destination="aSg-m9-Sq1" id="ghN-Tz-ylt"/>
+                <outlet property="dismissButton" destination="N2H-ZD-sZa" id="gjZ-9j-cua"/>
+                <outlet property="leftImage" destination="wuC-wd-JhH" id="44d-gE-Ngp"/>
+                <outlet property="leftImageDistance" destination="Ys6-Id-wHg" id="zEU-ye-fR7"/>
+                <outlet property="rightImage" destination="DTy-NF-TCD" id="iIJ-Nq-RP6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,25 +19,61 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There was a match with" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrZ-2g-iU4">
-                    <rect key="frame" x="69" y="233.5" width="182" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2H-ZD-sZa">
+                    <rect key="frame" x="110" y="413" width="100" height="28"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                    <state key="normal" title="   Keep Looking   ">
+                        <color key="titleColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onDismiss:" destination="-1" eventType="touchUpInside" id="N3L-dD-Tva"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSg-m9-Sq1">
+                    <rect key="frame" x="122" y="370" width="76" height="28"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                    <state key="normal" title="Message Foo">
+                        <color key="titleColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onChat:" destination="-1" eventType="touchUpInside" id="XvB-dr-bHa"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's a Match!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMT-TQ-m5V">
+                    <rect key="frame" x="62" y="109" width="196" height="48"/>
+                    <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="42"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matching User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfI-5R-8sA">
-                    <rect key="frame" x="104" y="274" width="112.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wuC-wd-JhH">
+                    <rect key="frame" x="75" y="234" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="DL4-Ek-hUb"/>
+                        <constraint firstAttribute="width" constant="80" id="dSU-gj-JNr"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTy-NF-TCD">
+                    <rect key="frame" x="165" y="254" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="IdU-m8-fQL"/>
+                        <constraint firstAttribute="height" constant="80" id="f9l-qw-dOn"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.127654751332889" green="0.20051942366322223" blue="0.38376913265306123" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="KrZ-2g-iU4" secondAttribute="centerX" id="7Ys-NQ-iIw"/>
-                <constraint firstAttribute="centerX" secondItem="sfI-5R-8sA" secondAttribute="centerX" id="N0R-l7-snN"/>
-                <constraint firstAttribute="centerY" secondItem="sfI-5R-8sA" secondAttribute="centerY" id="R98-vc-GvU"/>
-                <constraint firstItem="sfI-5R-8sA" firstAttribute="top" secondItem="KrZ-2g-iU4" secondAttribute="bottom" constant="20" id="ksl-yp-04e"/>
+                <constraint firstAttribute="centerY" secondItem="kMT-TQ-m5V" secondAttribute="centerY" constant="150" id="0ct-CG-brr"/>
+                <constraint firstItem="N2H-ZD-sZa" firstAttribute="top" secondItem="aSg-m9-Sq1" secondAttribute="bottom" constant="15" id="BnI-Ce-8i8"/>
+                <constraint firstAttribute="centerY" secondItem="aSg-m9-Sq1" secondAttribute="centerY" constant="-100" id="HS1-AJ-jYC"/>
+                <constraint firstAttribute="centerX" secondItem="kMT-TQ-m5V" secondAttribute="centerX" id="QEs-n1-iME"/>
+                <constraint firstAttribute="centerX" secondItem="DTy-NF-TCD" secondAttribute="centerX" constant="-45" id="U8v-ny-kXP"/>
+                <constraint firstAttribute="centerX" secondItem="N2H-ZD-sZa" secondAttribute="centerX" id="Xjz-G3-U9e"/>
+                <constraint firstAttribute="centerX" secondItem="aSg-m9-Sq1" secondAttribute="centerX" id="YdZ-7h-yuT"/>
+                <constraint firstAttribute="centerX" secondItem="wuC-wd-JhH" secondAttribute="centerX" constant="45" id="Ys6-Id-wHg"/>
+                <constraint firstAttribute="centerY" secondItem="wuC-wd-JhH" secondAttribute="centerY" constant="10" id="ZG7-2x-h5s"/>
+                <constraint firstAttribute="centerY" secondItem="DTy-NF-TCD" secondAttribute="centerY" constant="-10" id="gvE-um-o8a"/>
             </constraints>
             <point key="canvasLocation" x="279" y="225"/>
         </view>

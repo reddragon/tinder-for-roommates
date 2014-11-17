@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ShowMatchVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "FooBarViewController.h"
 #import <Parse/Parse.h>
 
 @interface ShowUserVC ()
@@ -31,6 +32,10 @@
     self.userIndex = 0;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self prepareView];
+}
+
 - (void)addNewUsersToShow:(NSMutableArray*) users {
     
     // TODO Handle the case when
@@ -43,7 +48,13 @@
 
 - (void)prepareView {
     User* userToShow = [self currentUserForMatching];
-    [self.imgView setImageWithURL:userToShow.profileImageURL];
+    if (userToShow.profileImage == nil) {
+        NSLog(@"Manually setting the image for user: %@", userToShow.name);
+        [self.imgView setImageWithURL:userToShow.profileImageURL];
+    } else {
+        NSLog(@"Setting the image for user: %@ from cache", userToShow.name);
+        [self.imgView setImage:userToShow.profileImage];
+    }
     [self.nameLabel setText:userToShow.name];
 }
 
@@ -84,17 +95,22 @@
     match[@"from"] = [[User user] pfUser];
     match[@"from_fbid"] = [[User user] fbid];
     
+    User* currentUserForMatching = [self currentUserForMatching];
     
-    match[@"to"] = [[self currentUserForMatching] pfUser];
-    match[@"to_fbid"] = [[self currentUserForMatching] fbid];
+    match[@"to"] = [currentUserForMatching pfUser];
+    match[@"to_fbid"] = [currentUserForMatching fbid];
     match[@"matched"] = @(like);
     [match saveInBackground];
     
-    if (like && [[self currentUserForMatching] likesUs]) {
-        ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:[self currentUserForMatching]];
-        [self presentViewController:matchVC animated:YES completion:nil];
+    [self incrementIterator];
+    
+    // if (true) {
+    if (like && [currentUserForMatching likesUs]) {
+        ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:currentUserForMatching];
+        
+        // FooBarViewController* matchVC = [[FooBarViewController alloc]init];
+        [self.view.window.rootViewController presentViewController:matchVC animated:YES completion:nil];
     } else {
-        [self incrementIterator];
         [self prepareView];
     }
 }

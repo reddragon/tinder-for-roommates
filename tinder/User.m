@@ -48,6 +48,15 @@ static User* _currentUser;
         _last_name = user[@"last_name"];
         _location = user[@"location"];
         _profileImageURL = [NSURL URLWithString:user[@"profileImgUrl"]];
+        
+        NSURLRequest* request = [[NSURLRequest alloc] initWithURL:_profileImageURL];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (!connectionError) {
+                NSLog(@"Fetched the full image for: %@, size: %u", _name, data.length);
+                _profileImage = [UIImage imageWithData:data];
+            }
+        }];
+        
         if (user[@"preferences_set"] != nil) {
             _preferences_set = [user[@"preferences_set"] boolValue];
         } else {
