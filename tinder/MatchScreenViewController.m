@@ -53,11 +53,32 @@
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
                     NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
+                    NSMutableDictionary* newUserFBIds = [[NSMutableDictionary alloc] init];
                     for (PFUser* foundUser in objects) {
                         User* user = [[User alloc] initFromPFUser:foundUser];
                         [newUsersToShow addObject:user];
+                        newUserFBIds[user.fbid] = user;
                     }
-                    [self showNewResultsWithUsers:newUsersToShow];
+                    
+                    PFQuery *findMatches = [PFQuery queryWithClassName:@"matches"];
+                    [findMatches whereKey:@"to_fbid" equalTo:[[User user] fbid]];
+                    [findMatches whereKey:@"from_fbid" containedIn:[newUserFBIds allKeys]];
+                    [findMatches findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                        if (!error) {
+                            NSLog(@"Number of potential results: %d", objects.count);
+                            for (PFObject* potentialMatch in objects) {
+                                NSString* fbid = potentialMatch[@"from_fbid"];
+                                User* user = newUserFBIds[fbid];
+                                if (user) {
+                                    NSLog(@"id: %@ likes: %@", fbid, potentialMatch[@"matched"]);
+                                    user.likesUs = [potentialMatch[@"matched"] boolValue];
+                                }
+                            }
+                            [self showNewResultsWithUsers:newUsersToShow];
+                        } else {
+                            NSLog(@"Some problem while finding mutual matches %@", error);
+                        }
+                    }];
                 } else {
                     NSLog(@"Could not make the second query to fetch actual users!");
                 }
@@ -66,7 +87,7 @@
         } else {
             NSLog(@"Had some problem while getting people we have seen before: %@", error);
         }
-    }];
+    }]; 
 }
 
 - (void) initiateSearching {

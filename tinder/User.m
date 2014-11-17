@@ -56,6 +56,7 @@ static User* _currentUser;
         _age = [(NSNumber *)user[@"age"] integerValue];
         _budget = [(NSNumber *)user[@"budget"] integerValue];
         _desc = user[@"desc"];
+        _likesUs = false;
         _pfUser = user;
     }
     return self;

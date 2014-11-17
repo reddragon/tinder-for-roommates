@@ -8,6 +8,7 @@
 
 #import "ShowUserVC.h"
 #import "User.h"
+#import "ShowMatchVC.h"
 #import "UIImageView+AFNetworking.h"
 #import <Parse/Parse.h>
 
@@ -89,8 +90,13 @@
     match[@"matched"] = @(like);
     [match saveInBackground];
     
-    [self incrementIterator];
-    [self prepareView];
+    if (like && [[self currentUserForMatching] likesUs]) {
+        ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:[self currentUserForMatching]];
+        [self presentViewController:matchVC animated:YES completion:nil];
+    } else {
+        [self incrementIterator];
+        [self prepareView];
+    }
 }
 
 - (IBAction)onPass:(id)sender {

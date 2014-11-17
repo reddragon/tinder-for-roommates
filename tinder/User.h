@@ -32,6 +32,9 @@
 
 @property (strong, nonatomic) PFUser* pfUser;
 
+// If this User has seen our profile, did they like us?
+@property BOOL likesUs;
+
 // Get an array of messages from another user
 - (void)messagesWithUser:(User *)fromUser withCompletion:(void(^)(NSArray *messages))completion;
 
