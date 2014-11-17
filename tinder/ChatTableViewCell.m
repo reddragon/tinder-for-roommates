@@ -44,7 +44,7 @@
     self.containerView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.containerView.bounds
                                                                      cornerRadius:cornerRadius].CGPath;
     
-    self.nameLabel.text = user.name;
+    self.nameLabel.text = user.first_name;
     
     if (self.match.lastMessage != nil) {
         self.subtitleLabel.text = self.match.lastMessage;

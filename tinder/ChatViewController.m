@@ -24,6 +24,25 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     self.navigationItem.leftBarButtonItem = backButton;
     
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 132, 40)];
+
+    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 0, 40, 40)];
+    [profileImageView setImageWithURL:self.match.match.profileImageURL placeholderImage:[UIImage imageNamed:@"Profile"]];
+    
+    CGFloat cornerRadius = profileImageView.frame.size.width / 2;
+    
+    profileImageView.layer.cornerRadius = cornerRadius;
+    [profileImageView.layer setMasksToBounds:YES];
+    profileImageView.clipsToBounds = YES;
+
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 0, 80, 40)];
+    nameLabel.text = self.match.match.first_name;
+    
+    [titleView addSubview:profileImageView];
+    [titleView addSubview:nameLabel];
+    
+    self.navigationItem.titleView = titleView;
+    
     // Create the timer object
     /*
     [NSTimer scheduledTimerWithTimeInterval:10.0
