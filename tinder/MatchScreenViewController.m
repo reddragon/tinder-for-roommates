@@ -91,8 +91,6 @@
 }
 
 - (void) initiateSearching {
-    // TODO
-    // Remove people you have passed.
     [self.containerView addSubview:self.searchingVC.view];
 }
 

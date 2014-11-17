@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchingForPeopleVC">
             <connections>
+                <outlet property="profileImg" destination="rlC-NQ-cXR" id="8JO-Qy-hgL"/>
+                <outlet property="radarView" destination="GlJ-Sz-tYC" id="tsR-DP-fmf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,17 +16,36 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking For People!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POx-hU-7lp">
-                    <rect key="frame" x="83" y="274" width="154" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for People..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POx-hU-7lp">
+                    <rect key="frame" x="76" y="74" width="167" height="20.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlJ-Sz-tYC">
+                    <rect key="frame" x="35" y="159" width="250" height="250"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="3T4-9h-9IA"/>
+                        <constraint firstAttribute="width" constant="250" id="i8J-nj-mhs"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlC-NQ-cXR">
+                    <rect key="frame" x="120" y="244" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="l2i-Jq-thw"/>
+                        <constraint firstAttribute="height" constant="80" id="nR6-57-pde"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="POx-hU-7lp" secondAttribute="centerY" id="n9h-wU-oiw"/>
+                <constraint firstAttribute="centerX" secondItem="GlJ-Sz-tYC" secondAttribute="centerX" id="16u-vf-JK3"/>
+                <constraint firstAttribute="centerX" secondItem="rlC-NQ-cXR" secondAttribute="centerX" id="VqA-Bw-F2G"/>
+                <constraint firstAttribute="centerY" secondItem="rlC-NQ-cXR" secondAttribute="centerY" id="ZOf-IS-m2U"/>
+                <constraint firstAttribute="centerY" secondItem="POx-hU-7lp" secondAttribute="centerY" constant="200" id="n9h-wU-oiw"/>
                 <constraint firstAttribute="centerX" secondItem="POx-hU-7lp" secondAttribute="centerX" id="uoE-SC-YhA"/>
+                <constraint firstAttribute="centerY" secondItem="GlJ-Sz-tYC" secondAttribute="centerY" id="w2x-9y-C51"/>
             </constraints>
             <point key="canvasLocation" x="413" y="225"/>
         </view>
