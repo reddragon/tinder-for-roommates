@@ -49,7 +49,7 @@
             // Add myself to the users to exclude as well.
             [usersToExclude addObject:[[User user] fbid]];
             PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-            [query whereKey:@"fbid" notContainedIn:usersToExclude];
+            // [query whereKey:@"fbid" notContainedIn:usersToExclude];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
                     NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
