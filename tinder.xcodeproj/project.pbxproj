@@ -17,6 +17,8 @@
 		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
 		6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */; };
 		6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */; };
+		6EB6CE1C1A1B04CC0073EBF4 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB6CE1A1A1B04CC0073EBF4 /* ProfileViewController.m */; };
+		6EB6CE1D1A1B04CC0073EBF4 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB6CE1B1A1B04CC0073EBF4 /* ProfileViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
 		C60006EC1A14976B00420B63 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C60006EA1A14976B00420B63 /* MainViewController.m */; };
 		C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C60006EB1A14976B00420B63 /* MainViewController.xib */; };
@@ -71,6 +73,9 @@
 		6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		6EB6CE191A1B04CC0073EBF4 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		6EB6CE1A1A1B04CC0073EBF4 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		6EB6CE1B1A1B04CC0073EBF4 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		82FF3710C0EC2B4E1B168D21 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C60006E91A14976B00420B63 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		C60006EA1A14976B00420B63 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -270,6 +275,9 @@
 				6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */,
 				6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */,
 				6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */,
+				6EB6CE191A1B04CC0073EBF4 /* ProfileViewController.h */,
+				6EB6CE1A1A1B04CC0073EBF4 /* ProfileViewController.m */,
+				6EB6CE1B1A1B04CC0073EBF4 /* ProfileViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -382,6 +390,7 @@
 				C6BC663B1A11B03500484AE4 /* LaunchScreen.xib in Resources */,
 				C65C4A511A17C8B800EEFCC4 /* SearchingForPeopleVC.xib in Resources */,
 				C60006ED1A14976B00420B63 /* MainViewController.xib in Resources */,
+				6EB6CE1D1A1B04CC0073EBF4 /* ProfileViewController.xib in Resources */,
 				6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */,
 				C6BC66381A11B03500484AE4 /* Images.xcassets in Resources */,
 				235EC8451A15CBFE00BB50DD /* ChatIndexViewController.xib in Resources */,
@@ -453,6 +462,7 @@
 				C6BC66301A11B03500484AE4 /* AppDelegate.m in Sources */,
 				23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */,
 				C60006EC1A14976B00420B63 /* MainViewController.m in Sources */,
+				6EB6CE1C1A1B04CC0073EBF4 /* ProfileViewController.m in Sources */,
 				C65C4A501A17C8B800EEFCC4 /* SearchingForPeopleVC.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,
