@@ -11,6 +11,7 @@
                 <outlet property="leftImage" destination="wuC-wd-JhH" id="44d-gE-Ngp"/>
                 <outlet property="leftImageDistance" destination="Ys6-Id-wHg" id="zEU-ye-fR7"/>
                 <outlet property="rightImage" destination="DTy-NF-TCD" id="iIJ-Nq-RP6"/>
+                <outlet property="rightImageDistance" destination="U8v-ny-kXP" id="eEm-sZ-cGk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,14 +48,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wuC-wd-JhH">
+                <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wuC-wd-JhH">
                     <rect key="frame" x="75" y="234" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="DL4-Ek-hUb"/>
                         <constraint firstAttribute="width" constant="80" id="dSU-gj-JNr"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTy-NF-TCD">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DTy-NF-TCD">
                     <rect key="frame" x="165" y="254" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="IdU-m8-fQL"/>

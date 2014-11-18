@@ -34,7 +34,7 @@
     self.radarView.layer.borderWidth = 2.0f;
     self.radarView.layer.cornerRadius = radarSize.width / 2.0;
     self.radarView.backgroundColor = [UIColor orangeColor];
-    self.radarView.alpha = 0.4;
+    self.radarView.alpha = 0.3;
     [self animateRadar];
 }
 

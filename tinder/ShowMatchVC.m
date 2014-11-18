@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *leftImage;
 @property (strong, nonatomic) IBOutlet UIImageView *rightImage;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *leftImageDistance;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rightImageDistance;
 
 @end
 
@@ -60,6 +61,25 @@
         self.rightImage.transform = CGAffineTransformMakeScale(3.0, 3.0);
     }];
     */
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.leftImageDistance.constant = -100.0;
+    self.rightImageDistance.constant = 100.0;
+    [self.leftImage layoutIfNeeded];
+    [self.leftImage setHidden:NO];
+    [self.rightImage setHidden:NO];
+    [self.rightImage layoutIfNeeded];
+    
+    
+    [UIView animateWithDuration:0.75 delay:0.0 usingSpringWithDamping:0.5 initialSpringVelocity:10 options:0 animations:^{
+        self.leftImageDistance.constant = 45.0;
+        self.rightImageDistance.constant = -45.0;
+        [self.leftImage layoutIfNeeded];
+        [self.rightImage layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        NSLog(@"Finished animating");
+    }];
 }
 
 - (void)prettifyImage:(UIImageView*) imgView {
