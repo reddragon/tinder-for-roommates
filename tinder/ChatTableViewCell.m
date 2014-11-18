@@ -49,7 +49,9 @@
     if (self.match.lastMessage != nil) {
         self.subtitleLabel.text = self.match.lastMessage;
     } else {
-        self.subtitleLabel.text = [NSString stringWithFormat:@"Matched at %@", self.match.date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"MM/dd"];
+        self.subtitleLabel.text = [NSString stringWithFormat:@"Matched on %@", [dateFormat stringFromDate:self.match.date]];
     }
 }
 
