@@ -17,6 +17,8 @@
 
 @interface MainViewController : UIViewController
 
+@property (strong, nonatomic) UIView *settingsButton;
 @property (strong, nonatomic) UIView *chatButton;
+@property (strong, nonatomic) UIView *matchButton;
 
 @end
