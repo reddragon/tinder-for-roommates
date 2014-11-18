@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) SearchingForPeopleVC* searchingVC;
 @property (strong, nonatomic) ShowUserVC* showUserVC;
+@property (strong, nonatomic) NSTimer* timer;
 @end
 
 @implementation MatchScreenViewController
@@ -31,8 +32,15 @@
     
     self.searchingVC.view.frame = self.containerView.bounds;
     self.showUserVC.view.frame = self.containerView.bounds;
-    [self.containerView addSubview:self.searchingVC.view];
-    
+    [self initiateSearching];
+}
+
+- (void)onTimerFire {
+    NSLog(@"Timer fired");
+    [self queryForUsers];
+}
+
+- (void)queryForUsers {
     // Get the people I have seen before. These can be either
     // the people I 'like'd or 'pass'ed.
     PFQuery *seenBeforeQuery = [PFQuery queryWithClassName:@"matches"];
@@ -49,7 +57,7 @@
             // Add myself to the users to exclude as well.
             [usersToExclude addObject:[[User user] fbid]];
             PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-            // [query whereKey:@"fbid" notContainedIn:usersToExclude];
+            [query whereKey:@"fbid" notContainedIn:usersToExclude];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
                     NSMutableArray* newUsersToShow = [[NSMutableArray alloc] init];
@@ -66,6 +74,7 @@
                     [findMatches findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         if (!error) {
                             NSLog(@"Number of potential results: %d", objects.count);
+                            
                             for (PFObject* potentialMatch in objects) {
                                 NSString* fbid = potentialMatch[@"from_fbid"];
                                 User* user = newUserFBIds[fbid];
@@ -74,7 +83,10 @@
                                     user.likesUs = [potentialMatch[@"matched"] boolValue];
                                 }
                             }
-                            [self showNewResultsWithUsers:newUsersToShow];
+                            if (newUsersToShow.count > 0) {
+                                [self.timer invalidate];
+                                [self showNewResultsWithUsers:newUsersToShow];
+                            }
                         } else {
                             NSLog(@"Some problem while finding mutual matches %@", error);
                         }
@@ -87,11 +99,17 @@
         } else {
             NSLog(@"Had some problem while getting people we have seen before: %@", error);
         }
-    }]; 
+    }];
 }
 
 - (void) initiateSearching {
     [self.containerView addSubview:self.searchingVC.view];
+    NSLog(@"Creating timer");
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                                  target:self
+                                                selector:@selector(onTimerFire)
+                                                userInfo:nil
+                                                 repeats:YES];
 }
 
 - (void)onDoneWithUserList {
