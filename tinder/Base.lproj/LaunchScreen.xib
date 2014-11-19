@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -10,14 +10,14 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="X2y-k2-4Pm">
-                    <rect key="frame" x="133" y="218" width="214" height="44"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="h1e-gD-wn6">
+                    <rect key="frame" x="108" y="202" width="264" height="76"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="X2y-k2-4Pm" secondAttribute="centerY" id="LD6-ZS-oi6"/>
-                <constraint firstAttribute="centerX" secondItem="X2y-k2-4Pm" secondAttribute="centerX" id="ShQ-9e-en0"/>
+                <constraint firstAttribute="centerY" secondItem="h1e-gD-wn6" secondAttribute="centerY" id="ZZ8-oj-bBq"/>
+                <constraint firstAttribute="centerX" secondItem="h1e-gD-wn6" secondAttribute="centerX" id="pOq-hG-FSQ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -25,6 +25,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Logo" width="214" height="44"/>
+        <image name="Launch" width="264" height="76"/>
     </resources>
 </document>
