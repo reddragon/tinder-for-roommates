@@ -29,7 +29,7 @@
     self.showUserVC.delegate = self;
     
     self.searchingVC.view.frame = self.containerView.bounds;
-    self.showUserVC.view.frame = self.containerView.bounds;
+    self.showUserVC.view.frame = self.view.frame;
     [self initiateSearching];
 }
 

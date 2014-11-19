@@ -14,21 +14,97 @@
 
 @interface ShowUserVC ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *passImage;
+@property (weak, nonatomic) IBOutlet UIImageView *infoImage;
+@property (weak, nonatomic) IBOutlet UIImageView *likeImage;
+
 @property (strong, nonatomic) MatchUserView *matchUserView;
-
-- (IBAction)onPass:(id)sender;
-- (IBAction)onLike:(id)sender;
-
 @property (strong, nonatomic) NSMutableArray* usersToShow;
-@property NSUInteger userIndex;
 
 @end
 
 @implementation ShowUserVC
 
+- (IBAction)passTouchDown {
+    [UIView animateWithDuration:0.6 animations:^{
+        self.passImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
+    }];
+}
+
+- (IBAction)passTouchUpInside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.passImage.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [[self.matchUserView topCard] nextCardWithLike:NO];
+    }];
+}
+
+- (IBAction)passTouchUpOutside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.passImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (IBAction)passTouchCancel {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.passImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (IBAction)likeTouchDown:(id)sender {
+    [UIView animateWithDuration:0.6 animations:^{
+        self.likeImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
+    }];
+}
+
+- (IBAction)likeTouchUpInside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.likeImage.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [[self.matchUserView topCard] nextCardWithLike:YES];
+    }];
+}
+
+- (IBAction)likeTouchUpOutside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.likeImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (IBAction)likeTouchCancel {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.likeImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (IBAction)infoTouchDown {
+    [UIView animateWithDuration:0.6 animations:^{
+        self.infoImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
+    }];
+}
+
+- (IBAction)infoTouchUpInside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.infoImage.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        // Show Profile
+    }];
+}
+- (IBAction)infoTouchUpOutside {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.infoImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
+- (IBAction)infoTouchCancel {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+        self.infoImage.transform = CGAffineTransformIdentity;
+    } completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
     self.usersToShow = [[NSMutableArray alloc] init];
     CGFloat matchUserViewWidth = [[UIScreen mainScreen] bounds].size.width - 20;
     self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10,
@@ -36,10 +112,8 @@
                                                                          matchUserViewWidth,
                                                                          matchUserViewWidth * 1.2)];
     self.matchUserView.delegate = self;
+
     [self.view addSubview:self.matchUserView];
-    self.userIndex = 0;
-    // self.imgView.clipsToBounds = YES;
-    // self.imgView.layer.cornerRadius = 5.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -117,11 +191,4 @@
     [self registerLikeOrPass:like forUser:user];
 }
 
-- (IBAction)onPass:(id)sender {
-    [[self.matchUserView topCard] nextCardWithLike:NO];
-}
-
-- (IBAction)onLike:(id)sender {
-    [[self.matchUserView topCard] nextCardWithLike:YES];
-}
 @end
