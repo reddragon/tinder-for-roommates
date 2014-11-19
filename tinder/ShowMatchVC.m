@@ -7,7 +7,7 @@
 //
 
 #import "ShowMatchVC.h"
-#import "ChatViewController.h";
+#import "ChatViewController.h"
 
 @interface ShowMatchVC ()
 
