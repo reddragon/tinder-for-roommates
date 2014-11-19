@@ -134,7 +134,7 @@
     [super viewDidLoad];
 
     
-    self.navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 80)];
+    self.navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 60)];
     [self.view addSubview:self.navBar];
 
     UIImageView *settingsMask = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gear Mask"]];
