@@ -20,6 +20,10 @@
 @property (strong, nonatomic) UIView *containerView;
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
+
+@property (strong, nonatomic) UIImageView *likeImage;
+@property (strong, nonatomic) UIImageView *nopeImage;
+
 @end
 
 @implementation MatchUserCardView
@@ -50,6 +54,21 @@
 }
 
 - (void)setup {
+    self.likeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Like"]];
+    self.nopeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Nope"]];
+
+    CGRect likeFrame = CGRectMake(10, 10, self.likeImage.frame.size.width, self.likeImage.frame.size.height);
+    CGRect nopeFrame = CGRectMake(self.frame.size.width - self.nopeImage.frame.size.width - 10,
+                                  10,
+                                  self.nopeImage.frame.size.width,
+                                  self.nopeImage.frame.size.height);
+    
+    self.likeImage.frame = likeFrame;
+    self.likeImage.alpha = 0;
+    
+    self.nopeImage.frame = nopeFrame;
+    self.nopeImage.alpha = 0;
+
     self.profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,
                                                                       0,
                                                                       self.frame.size.width,
@@ -75,6 +94,9 @@
     // border
     [self.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.layer setBorderWidth:1.0f];
+    
+    [self.profileImage addSubview:self.likeImage];
+    [self.profileImage addSubview:self.nopeImage];
     
     [self.containerView addSubview:self.profileImage];
     [self.containerView addSubview:self.profileLabel];
@@ -114,6 +136,17 @@
             paddingCard.center = CGPointMake(paddingCard.center.x, (self.originalCenter.y + 10) - (fabsf(xDistance) / 15));
             paddingCard.transform = CGAffineTransformMakeScale(growScale, growScale);
             
+            if (xDistance > 0) {
+                self.likeImage.alpha = MIN(xDistance / ([[UIScreen mainScreen] bounds].size.width / 2), 1);
+                self.nopeImage.alpha = 0;
+            } else if (xDistance < 0) {
+                self.likeImage.alpha = 0;
+                self.nopeImage.alpha = MIN(fabsf(xDistance) / ([[UIScreen mainScreen] bounds].size.width / 2), 1);
+            } else {
+                self.likeImage.alpha = 0;
+                self.nopeImage.alpha = 0;
+            }
+            
             [self setNeedsLayout];
             break;
         };
@@ -145,6 +178,10 @@
         MatchUserCardView *paddingCard = [self.delegate paddingCard];
         paddingCard.center = self.paddingCenter;
         paddingCard.transform = CGAffineTransformIdentity;
+        
+        self.likeImage.alpha = 0;
+        self.nopeImage.alpha = 0;
+
     } completion:^(BOOL finished) {
         [self setNeedsLayout];
     }];
