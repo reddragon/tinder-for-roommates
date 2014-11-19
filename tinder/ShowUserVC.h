@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MatchUserView.h"
 
 @protocol ShowUserDelegate <NSObject>
+
 - (void)onDoneWithUserList;
 
 @end
 
-@interface ShowUserVC : UIViewController
+@interface ShowUserVC : UIViewController <MatchUserViewDelegate>
+
 @property (strong, nonatomic) id<ShowUserDelegate> delegate;
 - (void)addNewUsersToShow:(NSMutableArray*) users;
+
 @end

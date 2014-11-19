@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowUserVC">
             <connections>
-                <outlet property="imgView" destination="J3c-o4-4eq" id="btP-Bo-BWW"/>
-                <outlet property="nameLabel" destination="Gqj-je-eQD" id="F5N-OT-fx2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,13 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqj-je-eQD">
-                    <rect key="frame" x="15" y="375" width="45.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="809-IX-VTZ">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="809-IX-VTZ">
                     <rect key="frame" x="103" y="435" width="34" height="30"/>
                     <state key="normal" title="Pass">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,7 +23,7 @@
                         <action selector="onPass:" destination="-1" eventType="touchUpInside" id="FKA-tB-aJy"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssZ-Su-1Ta">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssZ-Su-1Ta">
                     <rect key="frame" x="185" y="435" width="30" height="30"/>
                     <state key="normal" title="Like">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,24 +32,11 @@
                         <action selector="onLike:" destination="-1" eventType="touchUpInside" id="AZB-1C-HCv"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J3c-o4-4eq">
-                    <rect key="frame" x="10" y="60" width="300" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="300" id="UIC-QW-rm2"/>
-                        <constraint firstAttribute="width" constant="300" id="fr6-as-mlf"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Gqj-je-eQD" firstAttribute="top" secondItem="J3c-o4-4eq" secondAttribute="bottom" constant="15" id="4eC-uv-mOb"/>
-                <constraint firstAttribute="centerX" secondItem="J3c-o4-4eq" secondAttribute="centerX" id="DH6-kl-bKL"/>
                 <constraint firstAttribute="centerX" secondItem="809-IX-VTZ" secondAttribute="centerX" constant="40" id="hpM-lW-bhx"/>
-                <constraint firstItem="Gqj-je-eQD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="l2m-O4-zkw"/>
-                <constraint firstItem="809-IX-VTZ" firstAttribute="top" secondItem="J3c-o4-4eq" secondAttribute="bottom" constant="75" id="lQe-MH-8fM"/>
                 <constraint firstAttribute="centerX" secondItem="ssZ-Su-1Ta" secondAttribute="centerX" constant="-40" id="lat-og-qOr"/>
-                <constraint firstItem="ssZ-Su-1Ta" firstAttribute="top" secondItem="J3c-o4-4eq" secondAttribute="bottom" constant="75" id="n6g-y7-gJO"/>
-                <constraint firstItem="J3c-o4-4eq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="zeD-UU-3eg"/>
             </constraints>
             <point key="canvasLocation" x="413" y="225"/>
         </view>

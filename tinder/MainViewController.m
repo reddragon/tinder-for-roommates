@@ -275,7 +275,7 @@
             break;
     }
 
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         // Finish the content slide animation
         self.slidingView.frame = CGRectMake(scrollContentToX, self.slidingView.frame.origin.y, self.slidingView.frame.size.width, self.slidingView.frame.size.height);

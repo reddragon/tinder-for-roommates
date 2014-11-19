@@ -15,12 +15,14 @@
 
 @interface ShowUserVC ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *imgView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) MatchUserView *matchUserView;
+
 - (IBAction)onPass:(id)sender;
 - (IBAction)onLike:(id)sender;
+
 @property (strong, nonatomic) NSMutableArray* usersToShow;
 @property NSUInteger userIndex;
+
 @end
 
 @implementation ShowUserVC
@@ -29,7 +31,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.usersToShow = [[NSMutableArray alloc] init];
-    self.userIndex = 0;
+    
+    self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10, 20, 300, 300)];
+    self.matchUserView.delegate = self;
+    [self.view addSubview:self.matchUserView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,15 +52,12 @@
 }
 
 - (void)prepareView {
-    User* userToShow = [self currentUserForMatching];
-    if (userToShow.profileImage == nil) {
-        NSLog(@"Manually setting the image for user: %@", userToShow.name);
-        [self.imgView setImageWithURL:userToShow.profileImageURL];
+    if ([self.usersToShow count] > 0) {
+        self.matchUserView.users = self.usersToShow;
+        self.matchUserView.hidden = NO;
     } else {
-        NSLog(@"Setting the image for user: %@ from cache", userToShow.name);
-        [self.imgView setImage:userToShow.profileImage];
+        self.matchUserView.hidden = YES;
     }
-    [self.nameLabel setText:userToShow.name];
 }
 
 
@@ -64,55 +66,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (void)incrementIterator {
-    if (self.userIndex + 1>= self.usersToShow.count) {
+- (void)removeCurrentUser {
+    [self.usersToShow removeLastObject];
+    if ([self.usersToShow count] == 0) {
         NSLog(@"Ran out of profiles to show!");
         if (self.delegate != nil) {
             [self.delegate onDoneWithUserList];
         }
-    } else {
-        self.userIndex++;
     }
 }
 
 - (User*)currentUserForMatching {
-    User* userToShow = [self.usersToShow objectAtIndex:self.userIndex];
-    return userToShow;
+    return [self.usersToShow lastObject];
 }
 
-- (void)registerLikeOrPass:(BOOL)like {
+- (void)registerLikeOrPass:(BOOL)like  forUser:(User *)user {
     PFObject* match = [[PFObject alloc] initWithClassName:@"matches"];
     match[@"from"] = [[User user] pfUser];
     match[@"from_fbid"] = [[User user] fbid];
     
-    User* currentUserForMatching = [self currentUserForMatching];
-    
-    match[@"to"] = [currentUserForMatching pfUser];
-    match[@"to_fbid"] = [currentUserForMatching fbid];
+    match[@"to"] = user.pfUser;
+    match[@"to_fbid"] = user.fbid;
     match[@"matched"] = @(like);
     [match saveInBackground];
     
-    [self incrementIterator];
+    [self removeCurrentUser];
     
     // if (true) {
-    if (like && [currentUserForMatching likesUs]) {
-        ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:currentUserForMatching];
+    if (like && [user likesUs]) {
+        ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:user];
         
         // FooBarViewController* matchVC = [[FooBarViewController alloc]init];
         [self.view.window.rootViewController presentViewController:matchVC animated:YES completion:nil];
     } else {
         [self prepareView];
     }
+
+}
+
+- (void)registerLikeOrPass:(BOOL)like {
+    User* currentUserForMatching = [self currentUserForMatching];
+    [self registerLikeOrPass:like forUser:currentUserForMatching];
+}
+
+- (void)didLike:(BOOL)like user:(User *)user {
+    [self registerLikeOrPass:like forUser:user];
 }
 
 - (IBAction)onPass:(id)sender {
