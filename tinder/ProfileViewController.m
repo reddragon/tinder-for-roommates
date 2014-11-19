@@ -16,6 +16,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameAgeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *aboutLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UIButton *passButton;
+@property (strong, nonatomic) IBOutlet UILabel *budget;
+
+- (IBAction)onDone:(id)sender;
+- (IBAction)onLike:(id)sender;
+- (IBAction)onPass:(id)sender;
 
 @property (strong, nonatomic) User *user;
 
@@ -63,8 +69,9 @@
     
     // Set up the labels.
     self.nameAgeLabel.text = [NSString stringWithFormat:@"%@, %ld", self.user.name, self.user.age];
-    self.aboutLabel.text = [NSString stringWithFormat:@"About %@", self.user.name];
+    self.aboutLabel.text = [NSString stringWithFormat:@"About %@", self.user.first_name];
     self.descriptionLabel.text = self.user.desc;
+    self.budget.text = [NSString stringWithFormat:@"Budget: %lu", (unsigned long)self.user.budget];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,7 +84,23 @@
 }
 
 - (IBAction)onDone:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)onLike:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        if (self.delegate) {
+            [self.delegate didLike:YES user:_user];
+        }
+    }];
+}
+
+- (IBAction)onPass:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        if (self.delegate) {
+            [self.delegate didLike:NO user:_user];
+        }
+    }];
 }
 
 /*

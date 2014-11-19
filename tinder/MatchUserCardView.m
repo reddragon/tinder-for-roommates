@@ -7,6 +7,7 @@
 //
 
 #import "MatchUserCardView.h"
+#import "ProfileViewController.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface MatchUserCardView()
@@ -102,6 +103,17 @@
     [self.containerView addSubview:self.profileLabel];
     
     [self addSubview:self.containerView];
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onImageTap:)];
+    [self.profileImage addGestureRecognizer:tapGesture];
+    [self.profileImage setUserInteractionEnabled:YES];
+}
+
+- (void)onImageTap:(UITapGestureRecognizer*)tapGestureRecognizer {
+    NSLog(@"Fired!");
+    if (self.delegate) {
+        [self.delegate didTapOnImageOfUser:_user];
+    }
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)panGestureRecognizer {

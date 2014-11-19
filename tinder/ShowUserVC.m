@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ShowMatchVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "ProfileViewController.h"
 #import <Parse/Parse.h>
 
 @interface ShowUserVC ()
@@ -87,7 +88,7 @@
     [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.infoImage.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        // Show Profile
+        [self didTapOnImageOfUser:[self currentUserForMatching]];
     }];
 }
 - (IBAction)infoTouchUpOutside {
@@ -188,7 +189,22 @@
 }
 
 - (void)didLike:(BOOL)like user:(User *)user {
+    NSLog(@"Like or pass called");
     [self registerLikeOrPass:like forUser:user];
 }
 
+- (void)didTapOnImageOfUser:(User *)user {
+    ProfileViewController* pvc = [[ProfileViewController alloc] initWithUser:user];
+    pvc.delegate = self;
+    NSLog(@"Tap fired on user: %@", user.name);
+    [self.view.window.rootViewController presentViewController:pvc animated:YES completion:nil];
+}
+
+- (IBAction)onPass:(id)sender {
+    [self registerLikeOrPass:NO];
+}
+
+- (IBAction)onLike:(id)sender {
+    [self registerLikeOrPass:YES];
+}
 @end

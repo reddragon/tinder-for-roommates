@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "MatchUserView.h"
 
 #import <UIKit/UIKit.h>
 
@@ -14,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (strong, nonatomic) id<MatchUserViewDelegate> delegate;
 
 - (instancetype)init;
 - (instancetype)initWithUser:(User *)user;

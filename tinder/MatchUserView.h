@@ -13,6 +13,7 @@
 @protocol MatchUserViewDelegate <NSObject>
 
 - (void)didLike:(BOOL)like user:(User *)user;
+- (void)didTapOnImageOfUser:(User*)user;
 
 @end
 
