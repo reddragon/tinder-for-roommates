@@ -51,12 +51,12 @@
         [sender setTranslation:CGPointZero inView:self.view];
 
         CGFloat navDistanceOffCenter = self.view.center.x - self.navBar.center.x;
-        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width;
+        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width * 0.8;
 
         self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
         self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
 
-        CGFloat matchScaleFactor = fmaxf(1.0, fabsf(navDistanceOffCenter) / 40.6);
+        CGFloat matchScaleFactor = fmaxf(1.0, fabsf(navDistanceOffCenter) / 44);
         self.matchButton.transform = CGAffineTransformMakeScale(matchScaleFactor, matchScaleFactor);
         
         if (navDistanceOffCenter == 0) {
@@ -138,6 +138,7 @@
     [self.view addSubview:self.navBar];
 
     UIImageView *settingsMask = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gear Mask"]];
+    settingsMask.frame = CGRectMake(0, 0, 28, 28);
     self.settingsButton = [[UIView alloc] init];
     self.settingsButton.backgroundColor = [UIColor lightGrayColor];
     self.settingsButton.userInteractionEnabled = YES;
@@ -172,6 +173,7 @@
     [self.matchButton addGestureRecognizer:pushMatch];
 
     UIImageView *chatMask = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Chat Mask"]];
+    chatMask.frame = CGRectMake(0, 0, 28, 28);
 
     self.chatButton = [[UIView alloc] init];
     self.chatButton.backgroundColor = [UIColor lightGrayColor];
@@ -200,7 +202,6 @@
                                      [[UIScreen mainScreen] bounds].size.width,
                                      [[UIScreen mainScreen] bounds].size.height - contentY);
     
-    NSLog(@"Setting up with completion!");
     [User setUpWithCompletion:^{
         User* user = [User user];
  
@@ -284,13 +285,13 @@
         self.navBar.frame = CGRectMake(scrollNavToX, 0, self.navBar.frame.size.width, self.navBar.frame.size.height);
 
         CGFloat navDistanceOffCenter = self.view.center.x - self.navBar.center.x;
-        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width;
+        CGFloat scaleFactor = navDistanceOffCenter / self.view.frame.size.width * 0.8;
 
         // Finish the Settings button scaling animation
         self.settingsButton.transform = CGAffineTransformMakeScale(1 - scaleFactor, 1 - scaleFactor);
         self.chatButton.transform = CGAffineTransformMakeScale(1 + scaleFactor, 1 + scaleFactor);
         
-        CGFloat matchScaleFactor = fmaxf(1.0, fabsf(navDistanceOffCenter) / 40.6);
+        CGFloat matchScaleFactor = fmaxf(1.0, fabsf(navDistanceOffCenter) / 44);
         self.matchButton.transform = CGAffineTransformMakeScale(matchScaleFactor, matchScaleFactor);
         
         if (navDistanceOffCenter == 0) {
