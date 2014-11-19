@@ -118,10 +118,10 @@
 }
 
 - (IBAction)onPass:(id)sender {
-    [self registerLikeOrPass:NO];
+    [[self.matchUserView topCard] nextCardWithLike:NO];
 }
 
 - (IBAction)onLike:(id)sender {
-    [self registerLikeOrPass:YES];
+    [[self.matchUserView topCard] nextCardWithLike:YES];
 }
 @end

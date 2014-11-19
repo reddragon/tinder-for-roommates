@@ -151,7 +151,7 @@
 }
 
 - (void)nextCardWithLike:(BOOL)like {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:0 animations:^{
         if (like) {
             self.center = CGPointMake(1080, self.center.y);
         } else {

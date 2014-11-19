@@ -24,4 +24,7 @@
 
 @property (strong, nonatomic) User *user;
 @property (weak, nonatomic) id<MatchUserCardViewDelegate> delegate;
+
+- (void)nextCardWithLike:(BOOL)like;
+
 @end
