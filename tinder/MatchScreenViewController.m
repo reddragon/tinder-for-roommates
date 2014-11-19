@@ -24,8 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Executing the query");
-    
     self.searchingVC = [[SearchingForPeopleVC alloc] init];
     self.showUserVC = [[ShowUserVC alloc] init];
     self.showUserVC.delegate = self;
@@ -36,7 +34,6 @@
 }
 
 - (void)onTimerFire {
-    NSLog(@"Timer fired");
     [self queryForUsers];
 }
 
@@ -47,7 +44,7 @@
     [seenBeforeQuery whereKey:@"from" equalTo:[User pfUser]];
     [seenBeforeQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"Num Objects: %d", objects.count);
+            NSLog(@"Num Objects: %ld", objects.count);
             NSMutableArray* usersToExclude = [[NSMutableArray alloc] init];
             for (PFObject* match in objects) {
                 NSLog(@"Seen: %@", match[@"to_fbid"]);
@@ -73,13 +70,13 @@
                     [findMatches whereKey:@"from_fbid" containedIn:[newUserFBIds allKeys]];
                     [findMatches findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         if (!error) {
-                            NSLog(@"Number of potential results: %d", objects.count);
+                            // NSLog(@"Number of potential results: %d", objects.count);
                             
                             for (PFObject* potentialMatch in objects) {
                                 NSString* fbid = potentialMatch[@"from_fbid"];
                                 User* user = newUserFBIds[fbid];
                                 if (user) {
-                                    NSLog(@"id: %@ likes: %@", fbid, potentialMatch[@"matched"]);
+                                    // NSLog(@"id: %@ likes: %@", fbid, potentialMatch[@"matched"]);
                                     user.likesUs = [potentialMatch[@"matched"] boolValue];
                                 }
                             }

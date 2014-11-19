@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) NSURL* profileImageURL;
 
+@property NSDate* birthday;
 @property NSUInteger age;
 @property (strong, nonatomic) NSString* desc;
 @property NSUInteger budget;

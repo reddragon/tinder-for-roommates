@@ -56,7 +56,7 @@
                                                                   self.frame.size.width,
                                                                   self.frame.size.height - self.profileImage.frame.size.height)];
     
-    self.profileLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16];
+    self.profileLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:21];
     
     self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height + 40)];
     self.containerView.backgroundColor = [UIColor whiteColor];
@@ -67,7 +67,7 @@
     self.clipsToBounds = YES;
     
     // border radius
-    [self.layer setCornerRadius:20.0f];
+    [self.layer setCornerRadius:5.0f];
     
     // border
     [self.layer setBorderColor:[UIColor lightGrayColor].CGColor];

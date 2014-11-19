@@ -92,7 +92,15 @@ static User* _currentUser;
                     user[@"first_name"] = userData[@"first_name"];
                     user[@"last_name"] = userData[@"last_name"];
                     user[@"gender"] = userData[@"gender"];
-                    // NSString *birthday = userData[@"birthday"];
+                    NSString *birthdayStr = userData[@"birthday"];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"mm/dd/yyyy"];
+                    NSDate* birthday = [formatter dateFromString:birthdayStr];
+                    NSUInteger unitFlags = NSYearCalendarUnit;
+                    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSDateComponents *components = [calendar components:unitFlags fromDate:birthday toDate:[NSDate date] options:0];
+                    user[@"age"] = @([components year]);
+                    // NSLog(@"Birthday: %@ Age: %ld", birthdayStr, [components year]);
                     // NSString *relationship = userData[@"relationship_status"];
                     
                     NSLog(@"Image Req");

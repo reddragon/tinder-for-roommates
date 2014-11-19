@@ -31,9 +31,12 @@
     // Do any additional setup after loading the view from its nib.
     self.usersToShow = [[NSMutableArray alloc] init];
     
-    self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10, 20, 300, 300)];
+    self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10, 20, 300, 350)];
     self.matchUserView.delegate = self;
     [self.view addSubview:self.matchUserView];
+    self.userIndex = 0;
+    // self.imgView.clipsToBounds = YES;
+    // self.imgView.layer.cornerRadius = 5.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,6 +60,7 @@
     } else {
         self.matchUserView.hidden = YES;
     }
+    // [self.nameLabel setText:[NSString stringWithFormat:@"%@, %ld", userToShow.name, userToShow.age]];
 }
 
 
