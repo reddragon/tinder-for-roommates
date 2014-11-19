@@ -13,6 +13,7 @@
 @interface ChatViewController ()
 
 @property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -22,10 +23,19 @@
     [super viewDidLoad];
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
+    [backButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor orangeColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.collectionView.collectionViewLayout.springinessEnabled = YES;
+    self.messages = [NSMutableArray array];
+    
+    [self loadMessages];
     
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 132, 40)];
-
+    
     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 0, 40, 40)];
     [profileImageView setImageWithURL:self.match.match.profileImageURL placeholderImage:[UIImage imageNamed:@"Profile"]];
     
@@ -34,7 +44,7 @@
     profileImageView.layer.cornerRadius = cornerRadius;
     [profileImageView.layer setMasksToBounds:YES];
     profileImageView.clipsToBounds = YES;
-
+    
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 0, 80, 40)];
     nameLabel.text = self.match.match.first_name;
     
@@ -43,19 +53,22 @@
     
     self.navigationItem.titleView = titleView;
     
-    // Create the timer object
-    /*
-    [NSTimer scheduledTimerWithTimeInterval:10.0
+    if (self.timer != nil) {
+        [self.timer invalidate];
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0
                                      target:self
                                    selector:@selector(loadMessages)
                                    userInfo:nil
                                     repeats:YES];
-     */
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self loadMessages];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.messages = nil;
+    if (self.timer != nil) {
+        [self.timer invalidate];
+    }
 }
 
 - (void)dismiss {

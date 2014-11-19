@@ -147,13 +147,17 @@ static User* _currentUser;
     [fromQuery whereKey:@"recipient_fbid" equalTo:fromUser.fbid];
     
     PFQuery *toQuery = [PFQuery queryWithClassName:@"messages"];
-    [fromQuery whereKey:@"sender_fbid" equalTo:fromUser.fbid];
-    [fromQuery whereKey:@"recipient_fbid" equalTo:[User user].fbid];
+    [toQuery whereKey:@"sender_fbid" equalTo:fromUser.fbid];
+    [toQuery whereKey:@"recipient_fbid" equalTo:[User user].fbid];
 
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[fromQuery, toQuery]];
     [query orderByAscending:@"createdAt"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Messages Error: %@", error);
+            completion(nil);
+        }
         NSMutableArray *messages = [NSMutableArray array];
         for (PFObject *object in objects) {
             [messages addObject:[[Message alloc] initWithPFObject:object]];
