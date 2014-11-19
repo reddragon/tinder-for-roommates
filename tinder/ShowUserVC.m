@@ -30,8 +30,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.usersToShow = [[NSMutableArray alloc] init];
-    
-    self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10, 20, 300, 350)];
+    CGFloat matchUserViewWidth = [[UIScreen mainScreen] bounds].size.width - 20;
+    self.matchUserView = [[MatchUserView alloc] initWithFrame:CGRectMake(10,
+                                                                         20,
+                                                                         matchUserViewWidth,
+                                                                         matchUserViewWidth * 1.2)];
     self.matchUserView.delegate = self;
     [self.view addSubview:self.matchUserView];
     self.userIndex = 0;

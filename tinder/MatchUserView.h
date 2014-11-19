@@ -19,7 +19,11 @@
 @interface MatchUserView : UIView <MatchUserCardViewDelegate>
 
 @property (strong, nonatomic) NSArray *users;
+
+@property (strong, nonatomic) MatchUserCardView *topCard;
 @property (strong, nonatomic) MatchUserCardView *bottomCard;
+@property (strong, nonatomic) MatchUserCardView *paddingCard;
+
 @property (weak, nonatomic) id<MatchUserViewDelegate> delegate;
 
 @end

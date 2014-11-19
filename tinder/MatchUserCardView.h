@@ -15,6 +15,8 @@
 
 - (void)didLike:(BOOL)like user:(User *)user;
 - (MatchUserCardView *)bottomCard;
+- (MatchUserCardView *)paddingCard;
+- (void)didStartPanning;
 
 @end
 

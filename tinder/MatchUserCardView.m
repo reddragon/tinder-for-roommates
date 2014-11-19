@@ -12,6 +12,9 @@
 @interface MatchUserCardView()
 
 @property (assign, nonatomic) CGPoint originalCenter;
+@property (assign, nonatomic) CGPoint bottomCenter;
+@property (assign, nonatomic) CGPoint paddingCenter;
+
 @property (strong, nonatomic) UIImageView *profileImage;
 @property (strong, nonatomic) UILabel *profileLabel;
 @property (strong, nonatomic) UIView *containerView;
@@ -83,15 +86,16 @@
     
     CGFloat xDistance = [panGestureRecognizer translationInView:self].x;
     CGFloat yDistance = [panGestureRecognizer translationInView:self].y;
-    NSLog(@"%f", xDistance);
     
     switch (panGestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:{
             self.originalCenter = self.center;
+            self.bottomCenter = [self.delegate bottomCard].center;
+            self.paddingCenter = [self.delegate paddingCard].center;
             break;
         };
         case UIGestureRecognizerStateChanged:{
-            CGFloat rotationStrength = MIN(xDistance / 320, 1);
+            CGFloat rotationStrength = MIN(xDistance / [[UIScreen mainScreen] bounds].size.width, 1);
             CGFloat rotationAngel = (CGFloat) (2*M_PI * rotationStrength / 16);
             CGFloat scaleStrength = 1 - fabsf(rotationStrength) / 4;
             CGFloat scale = MAX(scaleStrength, 0.93);
@@ -101,9 +105,16 @@
             CGAffineTransform scaleTransform = CGAffineTransformScale(transform, scale, scale);
             self.transform = scaleTransform;
 
-            CGFloat bottomScale = 1 + fabsf(xDistance / 320 / 20);
-            [self.delegate bottomCard].transform = CGAffineTransformMakeScale(bottomScale, bottomScale);
+            CGFloat growScale = 1 + fabsf(xDistance / [[UIScreen mainScreen] bounds].size.width / 18);
+            MatchUserCardView * bottomCard = [self.delegate bottomCard];
+            bottomCard.center = CGPointMake(bottomCard.center.x, (self.originalCenter.y + 5) - (fabsf(xDistance) / 12));
+            bottomCard.transform = CGAffineTransformMakeScale(growScale, growScale);
+
+            MatchUserCardView * paddingCard = [self.delegate paddingCard];
+            paddingCard.center = CGPointMake(paddingCard.center.x, (self.originalCenter.y + 10) - (fabsf(xDistance) / 15));
+            paddingCard.transform = CGAffineTransformMakeScale(growScale, growScale);
             
+            [self setNeedsLayout];
             break;
         };
         case UIGestureRecognizerStateEnded: {
@@ -125,23 +136,34 @@
 - (void)reset {
     [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:.4 initialSpringVelocity:20 options:0 animations:^{
         self.center = self.originalCenter;
-        self.transform = CGAffineTransformMakeRotation(0);
-        [self.delegate bottomCard].transform = CGAffineTransformIdentity;
-    } completion:nil];
+        self.transform = CGAffineTransformIdentity;
+        
+        MatchUserCardView *bottomCard = [self.delegate bottomCard];
+        bottomCard.transform = CGAffineTransformIdentity;
+        bottomCard.center = self.bottomCenter;
+
+        MatchUserCardView *paddingCard = [self.delegate paddingCard];
+        paddingCard.center = self.paddingCenter;
+        paddingCard.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [self setNeedsLayout];
+    }];
 }
 
 - (void)nextCardWithLike:(BOOL)like {
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:.4 initialSpringVelocity:20 options:0 animations:^{
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:.6 initialSpringVelocity:10 options:0 animations:^{
         if (like) {
-            self.center = CGPointMake(480, self.center.y);
+            self.center = CGPointMake(1080, self.center.y);
         } else {
-            self.center = CGPointMake(-480, self.center.y);
+            self.center = CGPointMake(-1080, self.center.y);
         }
         [self.delegate bottomCard].transform = CGAffineTransformIdentity;
         [self.delegate bottomCard].frame = CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height - 5);
 
     } completion:^(BOOL finished) {
+        [self removeFromSuperview];
         [self.delegate didLike:like user:self.user];
+        [self setNeedsLayout];
     }];
 }
 

@@ -11,7 +11,7 @@
 
 @interface MatchUserView()
 
-@property (strong, nonatomic) MatchUserCardView *topCard;
+@property (strong, nonatomic) MatchUserCardView *transitionCard;
 
 @end
 
@@ -27,6 +27,9 @@
     if ([self.users count] > 1) {
         self.bottomCard = [[MatchUserCardView alloc] initWithFrame:CGRectMake(2, 5, self.frame.size.width - 4, self.frame.size.height - 5)];
         self.bottomCard.user = self.users[[self.users count] - 2];
+
+        self.paddingCard = [[MatchUserCardView alloc] initWithFrame:CGRectMake(4, 10, self.frame.size.width - 8, self.frame.size.height - 5)];
+        self.transitionCard = [[MatchUserCardView alloc] initWithFrame:CGRectMake(4, 10, self.frame.size.width - 8, self.frame.size.height - 5)];
     }
     
     [self setNeedsLayout];
@@ -39,13 +42,27 @@
     [self.bottomCard removeFromSuperview];
     self.bottomCard = nil;
     
+    [self.paddingCard removeFromSuperview];
+    self.paddingCard = nil;
+    
+    [self.transitionCard removeFromSuperview];
+    self.transitionCard = nil;
+    
     [self.delegate didLike:like user:user];
+    
+    [self setNeedsLayout];
+}
+
+- (void)didStartPanning {
+    
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
 
     if (self.bottomCard != nil) {
+        [self addSubview:self.transitionCard];
+        [self addSubview:self.paddingCard];
         [self addSubview:self.bottomCard];
     }
 
