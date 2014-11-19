@@ -101,8 +101,6 @@
     // if (true) {
     if (like && [user likesUs]) {
         ShowMatchVC* matchVC = [[ShowMatchVC alloc] initWithMatchingUser:user];
-        
-        // FooBarViewController* matchVC = [[FooBarViewController alloc]init];
         [self.view.window.rootViewController presentViewController:matchVC animated:YES completion:nil];
     } else {
         [self prepareView];

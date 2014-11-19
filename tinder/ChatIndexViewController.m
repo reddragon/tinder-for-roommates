@@ -98,7 +98,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Match *match = self.matches[indexPath.row];
     ChatViewController *cvc = [[ChatViewController alloc] init];
-    cvc.match = match;
+    cvc.match = match.match;
+    cvc.matchID = match.matchID;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:cvc];
     [self.parentViewController presentViewController:nvc animated:YES completion:nil];
 }

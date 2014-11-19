@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "JSQMessages.h"
-#import "Match.h"
+#import "User.h"
 
 @class JSQMessagesViewController;
 
 @interface ChatViewController : JSQMessagesViewController
 
-@property (strong, nonatomic) Match* match;
+@property (strong, nonatomic) User* match;
+@property (strong, nonatomic) NSString* matchID;
 
 @end

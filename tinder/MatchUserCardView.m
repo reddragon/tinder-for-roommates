@@ -134,7 +134,7 @@
 }
 
 - (void)reset {
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:.4 initialSpringVelocity:20 options:0 animations:^{
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:.4 initialSpringVelocity:20 options:0 animations:^{
         self.center = self.originalCenter;
         self.transform = CGAffineTransformIdentity;
         

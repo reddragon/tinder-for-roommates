@@ -37,7 +37,7 @@
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 132, 40)];
     
     UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 0, 40, 40)];
-    [profileImageView setImageWithURL:self.match.match.profileImageURL placeholderImage:[UIImage imageNamed:@"Profile"]];
+    [profileImageView setImageWithURL:self.match.profileImageURL placeholderImage:[UIImage imageNamed:@"Profile"]];
     
     CGFloat cornerRadius = profileImageView.frame.size.width / 2;
     
@@ -46,7 +46,7 @@
     profileImageView.clipsToBounds = YES;
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 0, 80, 40)];
-    nameLabel.text = self.match.match.first_name;
+    nameLabel.text = self.match.first_name;
     
     [titleView addSubview:profileImageView];
     [titleView addSubview:nameLabel];
@@ -76,7 +76,7 @@
 }
 
 - (void)loadMessages {
-    [[User user] messagesWithUser:self.match.match withCompletion:^(NSArray *messages) {
+    [[User user] messagesWithUser:self.match withCompletion:^(NSArray *messages) {
         self.messages = [NSMutableArray arrayWithArray:messages];
         [self.collectionView reloadData];
     }];
@@ -126,7 +126,7 @@
     if ([message.senderId isEqualToString:self.senderId]) {
         [avatar setImageWithURL:[User user].profileImageURL placeholderImage:defaultAvatar];
     } else {
-        [avatar setImageWithURL:self.match.match.profileImageURL placeholderImage:defaultAvatar];
+        [avatar setImageWithURL:self.match.profileImageURL placeholderImage:defaultAvatar];
     }
     
     return [JSQMessagesAvatarImageFactory avatarImageWithImage:avatar.image diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
@@ -148,7 +148,7 @@
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     
     Message *message = [[Message alloc] initWithSender:self.senderId
-                                             recipient:self.match.match.fbid
+                                             recipient:self.match.fbid
                                      senderDisplayName:[User user].name
                                                   text:text date:date];
     [self.messages addObject:message];
@@ -157,11 +157,14 @@
             NSLog(@"%@", error);
         }
     }];
-    PFQuery *query = [PFQuery queryWithClassName:@"matches"];
-    [query getObjectInBackgroundWithId:self.match.matchID block:^(PFObject *match, NSError *error) {
-        match[@"last_message"] = text;
-        [match saveInBackground];
-    }];
+    
+    if (self.matchID != nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"matches"];
+        [query getObjectInBackgroundWithId:self.matchID block:^(PFObject *match, NSError *error) {
+            match[@"last_message"] = text;
+            [match saveInBackground];
+        }];
+    }
     [self finishSendingMessage];
 }
 
