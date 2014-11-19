@@ -26,13 +26,13 @@
 @implementation ShowUserVC
 
 - (IBAction)passTouchDown {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         self.passImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
     }];
 }
 
 - (IBAction)passTouchUpInside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.passImage.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [[self.matchUserView topCard] nextCardWithLike:NO];
@@ -40,25 +40,25 @@
 }
 
 - (IBAction)passTouchUpOutside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.passImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
 - (IBAction)passTouchCancel {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.passImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
 - (IBAction)likeTouchDown:(id)sender {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         self.likeImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
     }];
 }
 
 - (IBAction)likeTouchUpInside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.likeImage.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [[self.matchUserView topCard] nextCardWithLike:YES];
@@ -66,38 +66,38 @@
 }
 
 - (IBAction)likeTouchUpOutside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.likeImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
 - (IBAction)likeTouchCancel {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.likeImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
 - (IBAction)infoTouchDown {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         self.infoImage.transform = CGAffineTransformMakeScale(0.6, 0.6);
     }];
 }
 
 - (IBAction)infoTouchUpInside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.infoImage.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         // Show Profile
     }];
 }
 - (IBAction)infoTouchUpOutside {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.infoImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
 - (IBAction)infoTouchCancel {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:10 options:0 animations:^{
         self.infoImage.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
