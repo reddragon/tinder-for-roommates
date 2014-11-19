@@ -88,8 +88,8 @@
 
 - (void)_presentUserDetailsViewControllerAnimated:(BOOL)animated {
     MainViewController *mvc = [[MainViewController alloc] init];
+    self.view.window.rootViewController = mvc;
     [self presentViewController:mvc animated:YES completion:nil];
-    // [self.navigationController pushViewController:mvc animated:animated];
 }
 
 - (IBAction)onLogin:(id)sender {
