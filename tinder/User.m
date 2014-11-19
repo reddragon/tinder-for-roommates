@@ -189,20 +189,22 @@ static User* _currentUser;
         }
         
         [toQuery findObjectsInBackgroundWithBlock:^(NSArray *toObjects, NSError *error) {
+            NSMutableSet *matchFBIDs = [NSMutableSet set];
 
-            for (PFObject *fromObject in fromObjects) {
-                User *match = [[User alloc] initFromPFUser:fromObject[@"to"]];
-                [matches addObject:[[Match alloc] initWithMatch:match
-                                                           date:fromObject.createdAt
-                                                        matchID:fromObject.objectId
-                                                    lastMessage:fromObject[@"last_message"]]];
-            }
             for (PFObject *toObject in toObjects) {
                 User *match = [[User alloc] initFromPFUser:toObject[@"from"]];
-                [matches addObject:[[Match alloc] initWithMatch:match
-                                                           date:toObject.createdAt
-                                                        matchID:toObject.objectId
-                                                    lastMessage:toObject[@"last_message"]]];
+                [matchFBIDs addObject:match.fbid];
+            }
+
+            
+            for (PFObject *fromObject in fromObjects) {
+                User *match = [[User alloc] initFromPFUser:fromObject[@"to"]];
+                if ([matchFBIDs containsObject:match.fbid]) {
+                    [matches addObject:[[Match alloc] initWithMatch:match
+                                                               date:fromObject.createdAt
+                                                            matchID:fromObject.objectId
+                                                        lastMessage:fromObject[@"last_message"]]];
+                }
             }
             completion(matches);
         }];
