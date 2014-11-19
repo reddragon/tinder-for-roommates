@@ -46,7 +46,7 @@
     
     UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(width + width + 20, 20, self.loginScrollView.frame.size.width - 40, 40)];
     [thirdLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:16]];
-    thirdLabel.text = @"Chat with you matches inside the app.";
+    thirdLabel.text = @"Chat with your matches inside the app.";
     thirdLabel.textAlignment = NSTextAlignmentCenter;
     thirdLabel.numberOfLines = 2;
     
