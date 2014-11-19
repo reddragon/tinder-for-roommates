@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232A81F21A1BD4D600EAE117 /* MatchUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 232A81F11A1BD4D600EAE117 /* MatchUserView.m */; };
 		235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EC8351A12FBC100BB50DD /* ChatViewController.m */; };
 		235EC8381A12FBC100BB50DD /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 235EC8361A12FBC100BB50DD /* ChatViewController.xib */; };
 		235EC8401A13FB5B00BB50DD /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 235EC83F1A13FB5B00BB50DD /* avatar.jpg */; };
@@ -15,6 +16,7 @@
 		23997A871A16C978001AD2F7 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A851A16C978001AD2F7 /* ChatTableViewCell.m */; };
 		23997A881A16C978001AD2F7 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23997A861A16C978001AD2F7 /* ChatTableViewCell.xib */; };
 		23997A8B1A16CF4C001AD2F7 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 23997A8A1A16CF4C001AD2F7 /* Match.m */; };
+		23DF73CA1A1C2572006C4C0E /* MatchUserCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF73C91A1C2572006C4C0E /* MatchUserCardView.m */; };
 		6E8ABEE51A132FFD00ACE6DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */; };
 		6E8ABEE61A132FFD00ACE6DE /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8ABEE41A132FFD00ACE6DE /* SettingsViewController.xib */; };
 		9169ABF7387820F4D950778E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1167B42304BF41664A4C3D9E /* libPods.a */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		1167B42304BF41664A4C3D9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		232A81F01A1BD4D600EAE117 /* MatchUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchUserView.h; sourceTree = "<group>"; };
+		232A81F11A1BD4D600EAE117 /* MatchUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchUserView.m; sourceTree = "<group>"; };
 		235EC8341A12FBC100BB50DD /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		235EC8351A12FBC100BB50DD /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		235EC8361A12FBC100BB50DD /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		23997A891A16CF4C001AD2F7 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
 		23997A8A1A16CF4C001AD2F7 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		23997A921A17D95F001AD2F7 /* ViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewType.h; sourceTree = "<group>"; };
+		23DF73C81A1C2572006C4C0E /* MatchUserCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchUserCardView.h; sourceTree = "<group>"; };
+		23DF73C91A1C2572006C4C0E /* MatchUserCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchUserCardView.m; sourceTree = "<group>"; };
 		63C14F8723828EBD99DFC239 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6E8ABEE21A132FFD00ACE6DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6E8ABEE31A132FFD00ACE6DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -277,6 +283,10 @@
 		C6BC666B1A11B4C400484AE4 /* Match */ = {
 			isa = PBXGroup;
 			children = (
+				23DF73C81A1C2572006C4C0E /* MatchUserCardView.h */,
+				23DF73C91A1C2572006C4C0E /* MatchUserCardView.m */,
+				232A81F01A1BD4D600EAE117 /* MatchUserView.h */,
+				232A81F11A1BD4D600EAE117 /* MatchUserView.m */,
 				C6BC666C1A11B4F400484AE4 /* MatchScreenViewController.h */,
 				C6BC666D1A11B4F400484AE4 /* MatchScreenViewController.m */,
 				C6BC666E1A11B4F400484AE4 /* MatchScreenViewController.xib */,
@@ -456,7 +466,9 @@
 				C65C4A501A17C8B800EEFCC4 /* SearchingForPeopleVC.m in Sources */,
 				C6BC665C1A11B29500484AE4 /* Like.m in Sources */,
 				C6BC662D1A11B03500484AE4 /* main.m in Sources */,
+				232A81F21A1BD4D600EAE117 /* MatchUserView.m in Sources */,
 				235EC8371A12FBC100BB50DD /* ChatViewController.m in Sources */,
+				23DF73CA1A1C2572006C4C0E /* MatchUserCardView.m in Sources */,
 				C65C4A641A19D3A800EEFCC4 /* FooBarViewController.m in Sources */,
 				C6BC666F1A11B4F400484AE4 /* MatchScreenViewController.m in Sources */,
 				C65C4A5A1A19778B00EEFCC4 /* ShowMatchVC.m in Sources */,
