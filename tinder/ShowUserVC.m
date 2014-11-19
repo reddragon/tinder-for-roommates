@@ -88,7 +88,7 @@
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:0 animations:^{
         self.infoImage.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        // Show Profile
+        [self didTapOnImageOfUser:[self currentUserForMatching]];
     }];
 }
 - (IBAction)infoTouchUpOutside {
