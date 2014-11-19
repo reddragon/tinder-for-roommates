@@ -25,24 +25,44 @@
     self.loginScrollView.delegate = self;
     
     CGFloat width = self.loginScrollView.frame.size.width;
-    UIView *first = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, self.loginScrollView.frame.size.height)];
-    first.backgroundColor = [UIColor blueColor];
-    UIView *second = [[UIView alloc] initWithFrame:CGRectMake(width, 0, width, self.loginScrollView.frame.size.height)];
-    second.backgroundColor = [UIColor redColor];
-    UIView *third = [[UIView alloc] initWithFrame:CGRectMake(2*width, 0, width, self.loginScrollView.frame.size.height)];
-    third.backgroundColor = [UIColor purpleColor];
-    UIView *fourth = [[UIView alloc] initWithFrame:CGRectMake(3*width, 0, width, self.loginScrollView.frame.size.height)];
-    fourth.backgroundColor = [UIColor blackColor];
-    UIView *fifth = [[UIView alloc] initWithFrame:CGRectMake(4*width, 0, width, self.loginScrollView.frame.size.height)];
-    fifth.backgroundColor = [UIColor yellowColor];
-    
-    self.loginScrollView.contentSize = CGSizeMake(width * 5, self.loginScrollView.frame.size.height);
 
+    UILabel *firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, self.loginScrollView.frame.size.width - 40, 40)];
+    [firstLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:16]];
+    firstLabel.text = @"Anonymously \"Like\" or \"Pass\" on people Roomies suggests.";
+    firstLabel.textAlignment = NSTextAlignmentCenter;
+    firstLabel.numberOfLines = 2;
+    
+    UIImageView *first = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginOne"]];
+    first.frame = CGRectMake(0, 40, width, self.loginScrollView.frame.size.height - 20);
+
+    UILabel *secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(width + 20, 20, self.loginScrollView.frame.size.width - 40, 40)];
+    [secondLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:16]];
+    secondLabel.text = @"If someone you've like happens to like you back...";
+    secondLabel.textAlignment = NSTextAlignmentCenter;
+    secondLabel.numberOfLines = 2;
+    
+    UIImageView *second = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginTwo"]];
+    second.frame = CGRectMake(width, 40, width, self.loginScrollView.frame.size.height - 20);
+    
+    UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(width + width + 20, 20, self.loginScrollView.frame.size.width - 40, 40)];
+    [thirdLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:16]];
+    thirdLabel.text = @"Chat with you matches inside the app.";
+    thirdLabel.textAlignment = NSTextAlignmentCenter;
+    thirdLabel.numberOfLines = 2;
+    
+    UIImageView *third = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginThree"]];
+    third.frame = CGRectMake(2 * width, 40, width, self.loginScrollView.frame.size.height - 20);
+
+    self.loginScrollView.contentSize = CGSizeMake(width * 3, self.loginScrollView.frame.size.height);
+
+    [self.loginScrollView addSubview:firstLabel];
     [self.loginScrollView addSubview:first];
+
+    [self.loginScrollView addSubview:secondLabel];
     [self.loginScrollView addSubview:second];
+
+    [self.loginScrollView addSubview:thirdLabel];
     [self.loginScrollView addSubview:third];
-    [self.loginScrollView addSubview:fourth];
-    [self.loginScrollView addSubview:fifth];
 }
 
 - (IBAction)changePage:(id)sender {
@@ -67,7 +87,6 @@
 }
 
 - (void)_presentUserDetailsViewControllerAnimated:(BOOL)animated {
-    NSLog(@"Triggering presentUserDetailsVC");
     MainViewController *mvc = [[MainViewController alloc] init];
     [self presentViewController:mvc animated:YES completion:nil];
     // [self.navigationController pushViewController:mvc animated:animated];
