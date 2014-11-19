@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -17,44 +17,32 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="ActionBar" translatesAutoresizingMaskIntoConstraints="NO" id="LpR-Vj-8b8">
-                    <rect key="frame" x="0.0" y="400" width="320" height="108"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="ActionBar" translatesAutoresizingMaskIntoConstraints="NO" id="LpR-Vj-8b8">
+                    <rect key="frame" x="0.0" y="460" width="320" height="108"/>
                 </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="HeartButton" translatesAutoresizingMaskIntoConstraints="NO" id="CpH-Vl-WkK">
-                    <rect key="frame" x="188" y="410" width="83" height="83"/>
+                    <rect key="frame" x="187" y="472" width="83" height="83"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="83" id="NDE-qB-xoN"/>
                         <constraint firstAttribute="width" constant="83" id="oAe-LN-8s7"/>
                     </constraints>
                 </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="PassButton" translatesAutoresizingMaskIntoConstraints="NO" id="JdN-qt-ZAR">
-                    <rect key="frame" x="50" y="412" width="83" height="83"/>
+                    <rect key="frame" x="50" y="472" width="83" height="83"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="83" id="gz8-xm-l18"/>
                         <constraint firstAttribute="width" constant="83" id="sOC-o4-Lj0"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hq0-0f-jb3">
-                    <rect key="frame" x="50" y="412" width="83" height="83"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="passTouchCancel" destination="-1" eventType="touchCancel" id="7ll-6k-Cad"/>
-                        <action selector="passTouchDown" destination="-1" eventType="touchDown" id="iDf-eA-MoC"/>
-                        <action selector="passTouchUpInside" destination="-1" eventType="touchUpInside" id="YmF-ET-dgh"/>
-                        <action selector="passTouchUpOutside" destination="-1" eventType="touchUpOutside" id="P4a-LI-9QL"/>
-                    </connections>
-                </button>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Info" translatesAutoresizingMaskIntoConstraints="NO" id="2tC-iY-BGC">
-                    <rect key="frame" x="141" y="434" width="38" height="39"/>
+                    <rect key="frame" x="141" y="494" width="38" height="39"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="76C-Xf-nQv"/>
                         <constraint firstAttribute="height" constant="39" id="MVp-k4-jME"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2a-d3-heg">
-                    <rect key="frame" x="188" y="410" width="83" height="83"/>
+                    <rect key="frame" x="187" y="472" width="83" height="83"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -66,7 +54,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1l-Ng-zfo">
-                    <rect key="frame" x="141" y="434" width="38" height="39"/>
+                    <rect key="frame" x="141" y="494" width="38" height="39"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -77,24 +65,36 @@
                         <action selector="infoTouchUpOutside" destination="-1" eventType="touchUpOutside" id="iYJ-k5-cYJ"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hq0-0f-jb3">
+                    <rect key="frame" x="50" y="472" width="83" height="83"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="passTouchCancel" destination="-1" eventType="touchCancel" id="7ll-6k-Cad"/>
+                        <action selector="passTouchDown" destination="-1" eventType="touchDown" id="iDf-eA-MoC"/>
+                        <action selector="passTouchUpInside" destination="-1" eventType="touchUpInside" id="YmF-ET-dgh"/>
+                        <action selector="passTouchUpOutside" destination="-1" eventType="touchUpOutside" id="P4a-LI-9QL"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.9873046875" green="0.9873046875" blue="0.9873046875" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="d1l-Ng-zfo" firstAttribute="bottom" secondItem="2tC-iY-BGC" secondAttribute="bottom" id="0dA-Hk-cLB"/>
                 <constraint firstItem="d1l-Ng-zfo" firstAttribute="trailing" secondItem="2tC-iY-BGC" secondAttribute="trailing" id="Gbj-Uf-iu6"/>
-                <constraint firstItem="CpH-Vl-WkK" firstAttribute="leading" secondItem="2tC-iY-BGC" secondAttribute="trailing" constant="9" id="N1Y-R6-qXw"/>
+                <constraint firstItem="CpH-Vl-WkK" firstAttribute="leading" secondItem="2tC-iY-BGC" secondAttribute="trailing" constant="8" id="N1Y-R6-qXw"/>
                 <constraint firstItem="JdN-qt-ZAR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="NB6-Ta-f7O"/>
                 <constraint firstItem="2tC-iY-BGC" firstAttribute="leading" secondItem="JdN-qt-ZAR" secondAttribute="trailing" constant="8" id="SL0-mE-PWo"/>
-                <constraint firstAttribute="trailing" secondItem="CpH-Vl-WkK" secondAttribute="trailing" constant="49" id="WnS-Ns-ZOe"/>
+                <constraint firstAttribute="trailing" secondItem="CpH-Vl-WkK" secondAttribute="trailing" constant="50" id="WnS-Ns-ZOe"/>
                 <constraint firstItem="d1l-Ng-zfo" firstAttribute="top" secondItem="2tC-iY-BGC" secondAttribute="top" id="YAT-ac-qd8"/>
                 <constraint firstItem="JdN-qt-ZAR" firstAttribute="bottom" secondItem="hq0-0f-jb3" secondAttribute="bottom" id="bb5-sc-Gsw"/>
                 <constraint firstItem="d1l-Ng-zfo" firstAttribute="leading" secondItem="2tC-iY-BGC" secondAttribute="leading" id="eUT-eI-pDo"/>
                 <constraint firstItem="CpH-Vl-WkK" firstAttribute="bottom" secondItem="O2a-d3-heg" secondAttribute="bottom" id="edJ-ki-dNs"/>
-                <constraint firstAttribute="bottom" secondItem="CpH-Vl-WkK" secondAttribute="bottom" constant="75" id="eyC-08-teQ"/>
+                <constraint firstAttribute="bottom" secondItem="CpH-Vl-WkK" secondAttribute="bottom" constant="13" id="eyC-08-teQ"/>
                 <constraint firstItem="JdN-qt-ZAR" firstAttribute="trailing" secondItem="hq0-0f-jb3" secondAttribute="trailing" id="lWX-lZ-2w1"/>
-                <constraint firstAttribute="bottom" secondItem="2tC-iY-BGC" secondAttribute="bottom" constant="95" id="lv8-2y-8Ye"/>
-                <constraint firstAttribute="bottom" secondItem="LpR-Vj-8b8" secondAttribute="bottom" constant="60" id="o5y-Er-A2u"/>
-                <constraint firstAttribute="bottom" secondItem="JdN-qt-ZAR" secondAttribute="bottom" constant="73" id="oH8-oG-U57"/>
+                <constraint firstAttribute="bottom" secondItem="2tC-iY-BGC" secondAttribute="bottom" constant="35" id="lv8-2y-8Ye"/>
+                <constraint firstAttribute="bottom" secondItem="LpR-Vj-8b8" secondAttribute="bottom" id="o5y-Er-A2u"/>
+                <constraint firstAttribute="bottom" secondItem="JdN-qt-ZAR" secondAttribute="bottom" constant="13" id="oH8-oG-U57"/>
                 <constraint firstItem="CpH-Vl-WkK" firstAttribute="top" secondItem="O2a-d3-heg" secondAttribute="top" id="oel-f2-Ysb"/>
                 <constraint firstItem="JdN-qt-ZAR" firstAttribute="top" secondItem="hq0-0f-jb3" secondAttribute="top" id="pRK-cA-7d3"/>
                 <constraint firstItem="LpR-Vj-8b8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qUi-fd-LbN"/>
