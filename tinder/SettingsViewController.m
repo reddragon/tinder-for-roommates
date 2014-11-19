@@ -6,15 +6,17 @@
 //  Copyright (c) 2014 Foo Bar. All rights reserved.
 //
 
+#import "ProfileViewController.h"
 #import "SettingsViewController.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
+#import <UIImageView+AFNetworking.h>
 
 //@interface SettingsViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-@interface SettingsViewController ()
+@interface SettingsViewController () <UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -29,6 +31,14 @@
 @property (weak, nonatomic) IBOutlet UISlider *ageSlider;
 @property (weak, nonatomic) IBOutlet UILabel *budgetLabel;
 @property (weak, nonatomic) IBOutlet UISlider *budgetSlider;
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileBackgroundImageView;
+
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *contentViewPanGestureRecognizer;
+@property (strong, nonatomic) ProfileViewController *profileVC;
+@property (strong, nonatomic) UIImageView *movingProfileImageView;
+@property (strong, nonatomic) UIImageView *movingProfileBackgroundImageView;
 
 //@property (nonatomic) BOOL isPhotoUpdated;
 
@@ -66,9 +76,21 @@ const NSInteger kBudgetMax = 5000;
     NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeTrailing relatedBy:0 toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
     [self.view addConstraint:rightConstraint];
     
+    // Set up the content view pan gesture recognizer delegate.
+    self.contentViewPanGestureRecognizer.delegate = self;
+    
     // Set up keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    // Set up profile images
+    User *user = [User user];
+    [self.profileImageView setImageWithURL:user.profileImageURL];
+    [self.profileImageView.layer setCornerRadius:self.profileImageView.frame.size.height / 2];
+    [self.profileImageView.layer setBorderWidth:1];
+    [self.profileImageView.layer setMasksToBounds:YES];
+    [self.profileBackgroundImageView setImageWithURL:user.profileImageURL];
+    self.profileBackgroundImageView.alpha = 0.2;
     
     // Set up subview borders and corners.
 //    [self makeRoundedCorners:self.photoView.layer];
@@ -80,7 +102,6 @@ const NSInteger kBudgetMax = 5000;
     [self makeBorders:self.descriptionTextView.layer];
     [self makeRoundedCorners:self.descriptionTextView.layer];
     
-    User *user = [User user];
     if (user.preferences_set) {
 //        [self.photoImageView setImageWithURL:user.profileImageURL];
         [self setAge:user.age];
@@ -106,10 +127,10 @@ const NSInteger kBudgetMax = 5000;
 //            [alert show];
 //        }
         
-        if ([self.descriptionTextView.text isEqualToString:@""]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incomplete Settings" message:@"Please write a description about yourself." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
+//        if ([self.descriptionTextView.text isEqualToString:@""]) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incomplete Settings" message:@"Please write a description about yourself." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//            [alert show];
+//        }
     }
 }
 
@@ -140,6 +161,46 @@ const NSInteger kBudgetMax = 5000;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if (gestureRecognizer == self.contentViewPanGestureRecognizer) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self;
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+    return 2;
+}
+
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    UIView *containerView = [transitionContext containerView];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    //UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    [containerView addSubview:toViewController.view];
+    toViewController.view.backgroundColor = [UIColor clearColor];
+    self.profileVC.scrollView.transform = CGAffineTransformMakeTranslation(0.0, self.profileVC.scrollView.frame.size.height);
+    
+    self.profileVC.view.backgroundColor = [UIColor clearColor];
+    [UIView animateWithDuration:2 animations:^{
+        self.profileVC.scrollView.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
+        
+        self.profileVC.view.backgroundColor = [UIColor whiteColor];
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:YES];
+        [self.movingProfileImageView removeFromSuperview];
+        [self.movingProfileBackgroundImageView removeFromSuperview];
+        self.profileImageView.hidden = NO;
+        self.profileBackgroundImageView.hidden = NO;
+        self.contentView.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
+    }];
+}
+
 //- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
 //    self.photoImageView.image = chosenImage;
@@ -161,6 +222,96 @@ const NSInteger kBudgetMax = 5000;
 //    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
 //    [self presentViewController:picker animated:YES completion:nil];
 //}
+
+- (IBAction)onContentViewPan:(UIPanGestureRecognizer *)sender {
+    static BOOL transitionInitiated;
+    static CGFloat originY;
+    
+    CGPoint location = [sender locationInView:self.view];
+    CGPoint velocity = [sender velocityInView:self.view];
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        if (self.scrollView.contentOffset.y > 0.0 || velocity.y <= 0.0) {
+            transitionInitiated = NO;
+            return;
+        }
+        
+        transitionInitiated = YES;
+        originY = location.y;
+        
+        CGRect frame;
+        frame = self.profileImageView.frame;
+        frame.origin.y += 80;
+        self.movingProfileImageView = [[UIImageView alloc] initWithFrame:frame];
+        self.movingProfileImageView.image = self.profileImageView.image;
+        self.movingProfileImageView.contentMode = self.profileImageView.contentMode;
+        self.movingProfileImageView.clipsToBounds = self.profileImageView.clipsToBounds;
+        [self.movingProfileImageView.layer setCornerRadius:self.movingProfileImageView.frame.size.height / 2];
+        [self.movingProfileImageView.layer setBorderWidth:1];
+        [self.movingProfileImageView.layer setMasksToBounds:YES];
+        
+        frame = self.profileBackgroundImageView.frame;
+        frame.origin.y += 80;
+        self.movingProfileBackgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+        self.movingProfileBackgroundImageView.image = self.profileBackgroundImageView.image;
+        self.movingProfileBackgroundImageView.contentMode = self.profileBackgroundImageView.contentMode;
+        self.movingProfileBackgroundImageView.clipsToBounds = self.profileBackgroundImageView.clipsToBounds;
+        self.movingProfileBackgroundImageView.alpha = 0.2;
+        
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        [window addSubview:self.movingProfileBackgroundImageView];
+        [window addSubview:self.movingProfileImageView];
+        
+        self.profileImageView.hidden = YES;
+        self.profileBackgroundImageView.hidden = YES;
+    } else if (sender.state == UIGestureRecognizerStateChanged) {
+        if (transitionInitiated) {
+            CGFloat offset = location.y - originY;
+            CGFloat percent;
+            if (offset < 0.0) {
+                percent = 0.0;
+            } else if (offset > 100.0) {
+                percent = 1.0;
+            } else {
+                percent = offset / 100.0;
+            }
+        
+            self.movingProfileImageView.transform = CGAffineTransformMakeTranslation(0.0, 50.0 * percent);
+            self.movingProfileImageView.alpha = 0.8 * (1.0 - percent);
+            CGRect frame = self.movingProfileBackgroundImageView.frame;
+            frame.size.height = 150.0 + 100.0 * percent;
+            self.movingProfileBackgroundImageView.frame = frame;
+            self.movingProfileBackgroundImageView.alpha = 0.2 + 0.8 * percent;
+            self.contentView.transform = CGAffineTransformMakeTranslation(0.0, 100.0 * percent);
+        }
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        if (transitionInitiated) {
+            CGFloat offset = location.y - originY;
+            CGFloat percent;
+            if (offset < 0.0) {
+                percent = 0.0;
+            } else if (offset > 100.0) {
+                percent = 1.0;
+            } else {
+                percent = offset / 100.0;
+            }
+        
+            if (percent >= 1.0) {
+                self.profileVC = [[ProfileViewController alloc] init];
+                UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:self.profileVC];
+                nvc.modalPresentationStyle = UIModalPresentationCustom;
+                nvc.transitioningDelegate = self;
+                [self presentViewController:nvc animated:YES completion:nil];
+            } else {
+                [self.movingProfileImageView removeFromSuperview];
+                [self.movingProfileBackgroundImageView removeFromSuperview];
+                self.profileImageView.hidden = NO;
+                self.profileBackgroundImageView.hidden = NO;
+                self.contentView.transform = CGAffineTransformMakeTranslation(0.0, 0.0);
+            }
+        }
+    }
+}
 
 - (IBAction)onAgeSliderValueChanged:(id)sender {
     self.ageLabel.text = [NSString stringWithFormat:@"%ld", [self getAge]];

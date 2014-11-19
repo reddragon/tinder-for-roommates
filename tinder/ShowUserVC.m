@@ -10,7 +10,6 @@
 #import "User.h"
 #import "ShowMatchVC.h"
 #import "UIImageView+AFNetworking.h"
-#import "FooBarViewController.h"
 #import <Parse/Parse.h>
 
 @interface ShowUserVC ()
