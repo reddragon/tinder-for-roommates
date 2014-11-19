@@ -57,6 +57,12 @@
     
 }
 
+- (void)didTapOnImageOfUser:(User *)user {
+    if (self.delegate) {
+        [self.delegate didTapOnImageOfUser:user];
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
 

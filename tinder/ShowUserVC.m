@@ -10,6 +10,7 @@
 #import "User.h"
 #import "ShowMatchVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "ProfileViewController.h"
 #import <Parse/Parse.h>
 
 @interface ShowUserVC ()
@@ -188,7 +189,22 @@
 }
 
 - (void)didLike:(BOOL)like user:(User *)user {
+    NSLog(@"Like or pass called");
     [self registerLikeOrPass:like forUser:user];
 }
 
+- (void)didTapOnImageOfUser:(User *)user {
+    ProfileViewController* pvc = [[ProfileViewController alloc] initWithUser:user];
+    pvc.delegate = self;
+    NSLog(@"Tap fired on user: %@", user.name);
+    [self.view.window.rootViewController presentViewController:pvc animated:YES completion:nil];
+}
+
+- (IBAction)onPass:(id)sender {
+    [self registerLikeOrPass:NO];
+}
+
+- (IBAction)onLike:(id)sender {
+    [self registerLikeOrPass:YES];
+}
 @end

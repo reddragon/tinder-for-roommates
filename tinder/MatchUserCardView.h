@@ -14,6 +14,7 @@
 @protocol MatchUserCardViewDelegate <NSObject>
 
 - (void)didLike:(BOOL)like user:(User *)user;
+- (void)didTapOnImageOfUser:(User*)user;
 - (MatchUserCardView *)bottomCard;
 - (MatchUserCardView *)paddingCard;
 - (void)didStartPanning;
