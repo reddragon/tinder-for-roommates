@@ -15,7 +15,6 @@
                 <outlet property="contentViewPanGestureRecognizer" destination="yQi-lT-oYL" id="Yct-Iu-0sO"/>
                 <outlet property="descriptionTextView" destination="1hk-Fz-6Lw" id="H3j-lo-EWK"/>
                 <outlet property="descriptionView" destination="Zal-GO-ihe" id="H6O-09-RCV"/>
-                <outlet property="onLogout" destination="NwT-4g-znI" id="h9i-wb-tTd"/>
                 <outlet property="profileBackgroundImageView" destination="WKH-o9-1IW" id="ZpE-Br-SZ3"/>
                 <outlet property="profileImageView" destination="TMl-dB-rFL" id="KnE-o4-wRQ"/>
                 <outlet property="scrollView" destination="E73-un-cb8" id="JQx-7l-DH5"/>
@@ -211,26 +210,16 @@
                                     <exclude reference="lp3-iQ-YvS"/>
                                     <exclude reference="zKq-39-XgN"/>
                                     <exclude reference="UiT-Ww-KRV"/>
-                                    <exclude reference="fX1-iE-G0M"/>
-                                    <exclude reference="xaF-sf-YZb"/>
                                     <exclude reference="MPp-PS-52U"/>
                                     <exclude reference="fGH-OJ-K3X"/>
+                                    <exclude reference="fX1-iE-G0M"/>
+                                    <exclude reference="xaF-sf-YZb"/>
                                 </mask>
                             </variation>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="yQi-lT-oYL" appends="YES" id="JWX-vp-ydZ"/>
                             </connections>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwT-4g-znI">
-                            <rect key="frame" x="136" y="514" width="49" height="30"/>
-                            <state key="normal" title="Logout">
-                                <color key="titleColor" red="1" green="0.51384891710000002" blue="0.39439814099999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="onLogoutButtonPress:" destination="-1" eventType="touchUpInside" id="VQl-eP-RW2"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="kJA-sb-Ktt" firstAttribute="top" secondItem="E73-un-cb8" secondAttribute="top" constant="150" id="5Xl-1g-ODI"/>
@@ -246,8 +235,6 @@
                         <constraint firstAttribute="centerX" secondItem="TMl-dB-rFL" secondAttribute="centerX" id="fJL-CJ-dsN"/>
                         <constraint firstItem="kJA-sb-Ktt" firstAttribute="centerX" secondItem="E73-un-cb8" secondAttribute="centerX" id="i5W-fS-hMq"/>
                         <constraint firstAttribute="bottom" secondItem="kJA-sb-Ktt" secondAttribute="bottom" id="jdO-rC-8cR"/>
-                        <constraint firstItem="NwT-4g-znI" firstAttribute="top" secondItem="kJA-sb-Ktt" secondAttribute="bottom" constant="16" id="lc0-rZ-84R"/>
-                        <constraint firstAttribute="centerX" secondItem="NwT-4g-znI" secondAttribute="centerX" id="vSi-St-A76"/>
                         <constraint firstItem="WKH-o9-1IW" firstAttribute="leading" secondItem="E73-un-cb8" secondAttribute="leading" id="w5S-I8-RVy"/>
                         <constraint firstItem="kJA-sb-Ktt" firstAttribute="top" secondItem="E73-un-cb8" secondAttribute="top" id="wxR-Ol-iNJ"/>
                     </constraints>

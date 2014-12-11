@@ -29,8 +29,7 @@ static User* _currentUser;
 + (void)logout {
     User* user = [User user];
     if (user != nil) {
-        _currentUser = nil;
-        [PFUser logOut];
+        // TODO
     }
 }
 
