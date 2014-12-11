@@ -10,10 +10,12 @@ Tinder for Roommates (Roomies)
 - Be able to chat with people you have matched with.
 - Lot of detail in animating transitions, buttons, profile image stack, etc.
 
+![Video Walkthrough](demo.gif)
+
 #### Authors
 - Alan McConnell (alanmc)
-- Chia Chi-Lin (ccl42)
 - Gaurav Menghani (reddragon)
+- Chia Chi-Lin (ccl42)
 
 #### Collective Time Spent 
-40 hours
+>50 hours
