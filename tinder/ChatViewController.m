@@ -56,7 +56,7 @@
     if (self.timer != nil) {
         [self.timer invalidate];
     }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
                                      target:self
                                    selector:@selector(loadMessages)
                                    userInfo:nil

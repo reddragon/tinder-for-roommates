@@ -10,6 +10,7 @@
 #import "SettingsViewController.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "LoginViewController.h"
 
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
@@ -17,6 +18,7 @@
 
 //@interface SettingsViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @interface SettingsViewController () <UIGestureRecognizerDelegate, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
+@property (strong, nonatomic) IBOutlet UIButton *onLogout;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -39,6 +41,7 @@
 @property (strong, nonatomic) ProfileViewController *profileVC;
 @property (strong, nonatomic) UIImageView *movingProfileImageView;
 @property (strong, nonatomic) UIImageView *movingProfileBackgroundImageView;
+- (IBAction)onLogoutButtonPress:(id)sender;
 
 //@property (nonatomic) BOOL isPhotoUpdated;
 
@@ -416,4 +419,9 @@ const NSInteger kBudgetMax = 5000;
 }
 */
 
+- (IBAction)onLogoutButtonPress:(id)sender {
+    [User logout];
+    LoginViewController* lvc = [[LoginViewController alloc] init];
+    [self.navigationController pushViewController:lvc animated:YES];
+}
 @end
